@@ -1,0 +1,48 @@
+{
+  "name": "@kodi/echo",
+  "version": "0.1.0",
+  "description": "Browser Extension for sharing content with Kodi.",
+  "keywords": [
+    "kodi",
+    "kodi echo",
+    "xbmc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jaylinski/kodi-echo"
+  },
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "rm -rf ./build/ && rm -rf ./web-ext-artifacts/",
+    "build": "node ./scripts/build.js",
+    "format:scripts": "prettier --write \"./scripts/**/*.js\"",
+    "format:src": "prettier --write \"./src/**/*.js\"",
+    "format:test": "prettier --write \"./test/**/*.js\"",
+    "format": "npm run format:src && npm run format:scripts && npm run format:test",
+    "bundle:firefox": "web-ext -s build build",
+    "bundle": "npm run bundle:firefox",
+    "watch:tasks": "npm run format && npm run build",
+    "watch": "onchange \"./*(src|test)/**/*\" -- npm run watch:tasks"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "glob": "^7.1.2",
+    "onchange": "^3.3.0",
+    "prettier": "^1.14.2",
+    "sharp": "^0.18.1",
+    "web-ext": "^1.9.1"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "printWidth": 120,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "engines": {
+    "node": ">=8.9"
+  },
+  "os": [
+    "darwin",
+    "linux"
+  ]
+}

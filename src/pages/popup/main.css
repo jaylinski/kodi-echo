@@ -1,0 +1,243 @@
+:root {
+  --color-primary: #2eb1e7;
+  --color-primary-hover: #1598CE;
+  --color-text: rgba(255, 255, 255, .8);
+  --color-text-footer: rgba(255, 255, 255, .4);
+  --color-background-header: #1e2122;
+  --color-background-body: #252627;
+  --color-background-footer: #1e2122;
+  --color-background-error: #a94442;
+  --spacing-xs: .2rem;
+  --spacing-s: .5rem;
+  --spacing-m: 1rem;
+  --font-size: 120%;
+  --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Ubuntu, Helvetica, Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+}
+
+body {
+  width: 340px;
+  font-size: 1rem;
+  margin: 0;
+  color: var(--color-text);
+}
+
+/* Resets */
+
+a {
+  color: inherit;
+}
+
+button {
+  color: inherit;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+p, pre {
+  margin: 0;
+}
+
+/* Components */
+
+.c-header {
+  position: relative;
+  background-color: var(--color-background-header);
+  padding: var(--spacing-s) var(--spacing-m);
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, .08)
+}
+
+.c-header--logo {
+  min-width: 40px;
+}
+.c-header--logo img {
+  height: 28px;
+  float: left;
+}
+
+.c-header--playing {
+  font-size: 90%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: default;
+}
+
+.c-header--controls {
+  flex-grow: 1;
+  text-align: right;
+  cursor: default;
+}
+.c-header--controls button {
+  display: inline-block;
+  font-size: 120%;
+  background-color: transparent;
+  border: none;
+  vertical-align: text-bottom;
+  width: 28px;
+  transition: color .2s;
+  cursor: pointer;
+}
+.c-header--controls button:hover {
+  color: #fff;
+}
+
+.c-info {
+  background-color: var(--color-background-body);
+}
+.c-info--status {
+  font-size: 80%;
+  padding: var(--spacing-s) var(--spacing-m);
+}
+.c-info--status__error {
+  background-color: var(--color-background-error);
+}
+.c-info--status__error::before {
+  content: "⚠";
+}
+.c-info--status__error p {
+  display: inline;
+}
+
+.c-body {
+  padding: var(--spacing-m);
+  background-color: var(--color-background-body);
+}
+.c-body--controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-s) 0 var(--spacing-m) 0;
+}
+.c-body--controls__active {
+  color: var(--color-primary);
+}
+.c-body--controls-button {
+  font-size: 120%;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0; /* Override Firefox styles. */
+}
+.c-body--controls-volume {
+  width: 160px;
+}
+.c-body--controls-volume input {
+  min-width: 100%;
+  margin: 0; /* Override browser styles. */
+  padding: 0; /* Override browser styles. */
+  inline-size: 100%; /* Override Firefox styles. */
+}
+.c-body--controls-repeat {
+  position: relative;
+}
+.c-body--controls-repeat__one::after {
+  content: '1';
+  position: absolute;
+  top: 0;
+  right: -6px;
+  font-size: 70%;
+}
+
+.c-body--share {
+}
+.c-body--share button {
+  font-size: 1rem;
+  width: 100%;
+  padding: var(--spacing-s) var(--spacing-m);
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color .2s;
+}
+.c-body--share button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.c-setup {
+  padding: var(--spacing-m);
+  background-color: var(--color-background-body);
+}
+.c-setup--headline {
+  margin: 0 0 1rem 0;
+}
+
+.c-footer {
+  font-size: 80%;
+  display: flex;
+  background-color: var(--color-background-footer);
+  color: var(--color-text-footer);
+  padding: var(--spacing-s) var(--spacing-m);
+}
+.c-footer a,
+.c-footer a:visited {
+  color: var(--color-text-footer);
+  text-decoration: none;
+}
+.c-footer a:hover {
+  color: var(--color-text);
+}
+.c-footer--name {
+  flex-grow: 1;
+}
+.c-footer--version {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.c-loader {
+  height: 2px;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-background-body);
+}
+.c-loader::before{
+  display: none;
+  position: absolute;
+  content: "";
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  opacity: .6;
+  animation: loading 2s ease-in-out infinite;
+}
+.c-loader__show::before {
+  display: block;
+}
+
+/* Animations */
+
+@keyframes loading {
+  from {
+    left: 0;
+    width: 0;
+  }
+  30% {
+    left: 0;
+  }
+  70% {
+    width: 100%;
+  }
+  to {
+    left: 100%;
+    width: 0;
+  }
+}

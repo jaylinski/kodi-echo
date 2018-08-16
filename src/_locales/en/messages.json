@@ -1,0 +1,25 @@
+{
+  "extensionName": {
+    "message": "Kodi Echo",
+    "description": "Name of the extension."
+  },
+  "extensionDescription": {
+    "message": "With Kodi Echo you can share web content with Kodi.",
+    "description": "Description of the extension."
+  },
+  "footerHelp": {
+    "message": "Help"
+  },
+  "footerOptions": {
+    "message": "Options"
+  },
+  "optionsUser": {
+    "message": "User"
+  },
+  "optionsPassword": {
+    "message": "Password"
+  },
+  "optionsSave": {
+    "message": "Save"
+  }
+}
