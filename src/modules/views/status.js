@@ -18,6 +18,5 @@ export default (store) => `
 <div class="c-loader ${store.apiActive ? 'c-loader__show' : ''}"></div>
 <div class="c-info">
   ${!store.apiConnected ? noConnection(store.options) : ''}
-  ${store.pluginError ? apiError(store.pluginError.message) : ''}
-  <!-- insert info about currently playing element -->
+  ${store.apiError ? apiError(store.apiError.message) : ''}
 </div>`;

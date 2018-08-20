@@ -8,12 +8,13 @@ export default class Store extends EventTarget {
     // Default values.
     this.apiConnected = true;
     this.apiActive = false;
-    this.pluginError = false;
+    this.apiError = false;
     this.playing = false;
+    this.paused = false;
     this.volume = 50;
     this.muted = false;
-    this.repeat = false;
-    this.shuffle = false;
+    this.repeat = 'off';
+    this.shuffled = false;
   }
 
   commit(key, callback) {

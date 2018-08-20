@@ -53,6 +53,18 @@ export default class View extends EventTarget {
     document.querySelector('.c-body--share button').addEventListener('click', () => {
       this.dispatchEvent(new CustomEvent('kodi.share.click'));
     });
+    document.querySelector('.c-body--controls-playpause').addEventListener('click', () => {
+      this.dispatchEvent(new CustomEvent('kodi.player.playpause'));
+    });
+    document.querySelector('.c-body--controls-stop').addEventListener('click', () => {
+      this.dispatchEvent(new CustomEvent('kodi.player.stop'));
+    });
+    document.querySelector('.c-body--controls-previous').addEventListener('click', () => {
+      this.dispatchEvent(new CustomEvent('kodi.player.goto.previous'));
+    });
+    document.querySelector('.c-body--controls-next').addEventListener('click', () => {
+      this.dispatchEvent(new CustomEvent('kodi.player.goto.next'));
+    });
     document.querySelector('.c-body--controls-volume').addEventListener('change', (event) => {
       this.dispatchEvent(new CustomEvent('kodi.volume.set', { detail: event.target.valueAsNumber }));
     });

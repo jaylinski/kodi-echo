@@ -80,8 +80,6 @@ export default class WebSocketApi extends EventTarget {
   }
 
   listen(method, callback) {
-    this.addEventListener(method, (event) => {
-      callback(event.detail.params.data);
-    });
+    this.addEventListener(method, (event) => callback(event.detail.params.data));
   }
 }

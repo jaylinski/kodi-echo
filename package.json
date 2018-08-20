@@ -17,12 +17,11 @@
     "build": "node ./scripts/build.js",
     "format:scripts": "prettier --write \"./scripts/**/*.js\"",
     "format:src": "prettier --write \"./src/**/*.js\"",
-    "format:test": "prettier --write \"./test/**/*.js\"",
-    "format": "npm run format:src && npm run format:scripts && npm run format:test",
+    "format": "npm run format:src && npm run format:scripts",
     "bundle:firefox": "web-ext -s build build",
     "bundle": "npm run bundle:firefox",
     "watch:tasks": "npm run format && npm run build",
-    "watch": "onchange \"./*(src|test)/**/*\" -- npm run watch:tasks"
+    "watch": "onchange \"./*(src)/**/*\" -- npm run watch:tasks"
   },
   "dependencies": {},
   "devDependencies": {
