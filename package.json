@@ -26,10 +26,10 @@
   "dependencies": {},
   "devDependencies": {
     "glob": "^7.1.2",
-    "onchange": "^3.3.0",
+    "onchange": "^4.1.0",
     "prettier": "^1.14.2",
-    "sharp": "^0.18.1",
-    "web-ext": "^1.9.1"
+    "sharp": "^0.20.5",
+    "web-ext": "^2.8.0"
   },
   "prettier": {
     "arrowParens": "always",
