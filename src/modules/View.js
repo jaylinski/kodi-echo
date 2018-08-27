@@ -50,6 +50,14 @@ export default class View extends EventTarget {
       browser.runtime.openOptionsPage();
     });
 
+    const routes = document.querySelectorAll('.c-body--sidebar a');
+    routes.forEach((route) => {
+      route.addEventListener('click', (event) => {
+        console.log(event);
+        this.store.commit('route', event.target.dataset.route);
+      });
+    });
+
     document.querySelector('.c-body--share button').addEventListener('click', () => {
       this.dispatchEvent(new CustomEvent('kodi.share.click'));
     });

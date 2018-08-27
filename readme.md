@@ -4,7 +4,7 @@
 
 Kodi Echo lets you share your favorite content with Kodi (XBMC).
 
-Works with all [WebExtension](https://developer.mozilla.org/en-US/Add-ons/WebExtensions) compatible browsers 
+Should work with all [WebExtension](https://developer.mozilla.org/en-US/Add-ons/WebExtensions) compatible browsers 
 including Mozilla Firefox, Google Chrome and Microsoft Edge.
 
 > **This extension requires a script module compatible browser!**   
@@ -27,7 +27,8 @@ Check out the [comparison between Kodi Echo and Play to Kodi](#comparison-with-p
 
 * Mozilla Firefox
 * Google Chrome
-* Microsoft Edge
+
+<!-- TODO Test in in Microsoft Edge -->
 
 ### Enabling & Configuring
 
@@ -78,6 +79,7 @@ It only sends requests to your configured Kodi host.
 | Adds a context menu    | ☑          | ☑            |
 | Instant replay         | ☑          | ❎            |
 | Number of plugins      | 3          | \> 30        |
+| Languages (i18n)       | 2          | 1            |
 | Communication          | WebSockets | HTTP         |
 | Uses standard WebExtensions API | ☑ | ❎            |
 
@@ -97,7 +99,8 @@ Run `npm run build`.
 
 ### Roadmap
 
-* Add more controls
+* Add more controls (Queue button)
+* Localize UI
 * Resolve all TODOs
 * Test critical code
 * Get approval from XBMC Foundation for use of logo and name

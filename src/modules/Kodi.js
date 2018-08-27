@@ -79,9 +79,18 @@ export default class Kodi {
       const activePlayers = await this.api.send('Player.GetActivePlayers', []);
       this.activePlayerId = activePlayers.length > 0 ? activePlayers[0].playerid : 0;
 
-      const playerProps = await this.api.send('Player.GetProperties', [this.activePlayerId, ['shuffled', 'repeat']]);
+      const playerProps = await this.api.send('Player.GetProperties', [
+        this.activePlayerId,
+        ['shuffled', 'repeat', 'time', 'totaltime', 'percentage'],
+      ]);
       this.app.store.commit('shuffled', playerProps.shuffled);
       this.app.store.commit('repeat', playerProps.repeat);
+      this.app.store.commit('progress', {
+        time: playerProps.time,
+        duration: playerProps.totaltime,
+        percentage: playerProps.percentage,
+        current: Date.now(),
+      });
 
       // TODO We could also use the thumbnail, but a request to a third party would be made. #privacy
       const playing = await this.api.send('Player.GetItem', [this.activePlayerId, []]);
@@ -101,6 +110,7 @@ export default class Kodi {
       this.api.listen('Player.OnStop', () => {
         this.app.store.commit('paused', false);
         this.app.store.commit('playing', false);
+        this.app.store.commit('progress', false);
       });
     } catch (error) {
       this.app.store.commit('apiError', error);

@@ -11,10 +11,12 @@ export default class Store extends EventTarget {
     this.apiError = false;
     this.playing = false;
     this.paused = false;
+    this.progress = false;
     this.volume = 50;
     this.muted = false;
     this.repeat = 'off';
     this.shuffled = false;
+    this.route = 'controls';
   }
 
   commit(key, callback) {
