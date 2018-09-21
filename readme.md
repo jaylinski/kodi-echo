@@ -45,7 +45,7 @@ Visit Kodi &rarr; Settings &rarr; Services &rarr; Control.
 This extension requires the permission
 
 * to **access your active browser tab**   
-  This allows the extension to extract information from your current URL, like the Youtbe video ID.
+  This allows the extension to extract information from your current URL, like the Youtube video ID.
 * to **store data** in your browser   
   This allows the extension to save your settings, like your Kodi IP and Kodi credentials.
 * to **send you notifications**   
