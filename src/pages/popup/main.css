@@ -71,197 +71,22 @@ p, pre {
   box-shadow: 0 2px 10px rgba(255, 255, 255, .08)
 }
 
-.c-header--logo {
+.c-header__logo {
   display: flex;
   justify-content: center;
   min-width: var(--sidebar-width);
   padding: var(--spacing-s) 0;
 }
-.c-header--logo img {
+.c-header__logo img {
   height: 28px;
 }
-
-.c-header--playing {
+.c-header__playing {
   font-size: 90%;
   padding: var(--spacing-s) var(--spacing-m);
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   cursor: default;
-}
-
-.c-header--controls {
-  flex-grow: 1;
-  text-align: right;
-  cursor: default;
-}
-.c-header--controls button {
-  display: inline-block;
-  font-size: 120%;
-  background-color: transparent;
-  border: none;
-  vertical-align: text-bottom;
-  width: 28px;
-  transition: color .2s;
-  cursor: pointer;
-}
-.c-header--controls button:hover {
-  color: #fff;
-}
-
-.c-info {
-  background-color: var(--color-background-body);
-}
-.c-info--status {
-  font-size: 80%;
-  padding: var(--spacing-s) var(--spacing-m);
-}
-.c-info--status__error {
-  background-color: var(--color-background-error);
-}
-.c-info--status__error::before {
-  content: "⚠";
-}
-.c-info--status__error p {
-  display: inline;
-}
-
-.c-body {
-  display: flex;
-  background-color: var(--color-background-body);
-}
-.c-body--sidebar {
-  background-color: var(--color-background-sidebar);
-  width: var(--sidebar-width);
-  z-index: var(--z-index-sidebar);
-}
-.c-body--sidebar a {
-  display: block;
-  width: 100%;
-  color: var(--color-text-sidebar);
-  padding: var(--spacing-s) 0;
-  text-align: center;
-}
-.c-body--sidebar a:hover {
-  background-color: var(--color-primary);
-  color: var(--color-text);
-}
-.c-body--main {
-  flex-grow: 1;
-}
-.c-body--section {
-  position: relative;
-  display: none;
-}
-
-.c-body--controls-container {
-  padding: var(--spacing-m);
-}
-.c-body--controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--spacing-s) 0 var(--spacing-m) 0;
-}
-.c-body--controls__active {
-  color: var(--color-primary);
-}
-.c-body--controls-button {
-  font-size: 120%;
-  background-color: transparent;
-  cursor: pointer;
-  padding: 0; /* Override Firefox styles. */
-}
-.c-body--controls-volume {
-  width: 160px;
-}
-.c-body--controls-volume input {
-  min-width: 100%;
-  margin: 0; /* Override browser styles. */
-  padding: 0; /* Override browser styles. */
-  inline-size: 100%; /* Override Firefox styles. */
-}
-.c-body--controls-repeat {
-  position: relative;
-}
-.c-body--controls-repeat__one::after {
-  content: '1';
-  position: absolute;
-  top: 0;
-  right: -6px;
-  font-size: 70%;
-}
-
-.c-body--share {
-}
-.c-body--share button {
-  font-size: 1rem;
-  width: 100%;
-  padding: var(--spacing-s) var(--spacing-m);
-  background-color: var(--color-primary);
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: background-color .2s;
-}
-.c-body--share button:hover {
-  background-color: var(--color-primary-hover);
-}
-
-.c-progress {
-  position: relative;
-  width: 100%;
-  height: var(--progress-height);
-  background-color: var(--color-background-progress);
-}
-.c-progress--bar {
-  position: absolute;
-  height: var(--progress-height);
-  top: 0;
-  left: 0;
-  right: 0;
-  border-bottom: 4px solid var(--color-primary);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .99s;
-}
-.c-progress--timing {
-  color: var(--color-text-progress);
-  font-size: 60%;
-  text-align: right;
-  line-height: var(--progress-height);
-  padding-right: var(--spacing-m);
-}
-
-.c-setup {
-  padding: var(--spacing-m);
-  background-color: var(--color-background-body);
-}
-.c-setup--headline {
-  margin: 0 0 1rem 0;
-}
-
-.c-footer {
-  font-size: 80%;
-  display: flex;
-  background-color: var(--color-background-footer);
-  color: var(--color-text-footer);
-  padding: var(--spacing-s);
-}
-.c-footer a,
-.c-footer a:visited {
-  color: var(--color-text-footer);
-  text-decoration: none;
-}
-.c-footer a:hover {
-  color: var(--color-text);
-}
-.c-footer--name {
-  flex-grow: 1;
-}
-.c-footer--version {
-  flex-grow: 1;
-  text-align: right;
 }
 
 .c-loader {
@@ -281,8 +106,216 @@ p, pre {
   opacity: .6;
   animation: loading 2s ease-in-out infinite;
 }
-.c-loader__show::before {
+.c-loader--show::before {
   display: block;
+}
+
+.c-info {
+  background-color: var(--color-background-body);
+}
+.c-info__status {
+  font-size: 80%;
+  padding: var(--spacing-s) var(--spacing-m);
+}
+.c-info__status--error {
+  background-color: var(--color-background-error);
+}
+.c-info__status--error::before {
+  content: "⚠";
+}
+.c-info__status--error p {
+  display: inline;
+}
+
+.c-body {
+  display: flex;
+  background-color: var(--color-background-body);
+}
+.c-body__nav {
+  flex-shrink: 0;
+  width: var(--sidebar-width);
+}
+.c-body__main {
+  flex-grow: 1;
+}
+
+.c-nav {
+  background-color: var(--color-background-sidebar);
+}
+.c-nav__link {
+  display: block;
+  color: var(--color-text-sidebar);
+  padding: var(--spacing-s);
+  text-align: center;
+  border-left: 4px solid transparent;
+}
+.c-nav__link:hover {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+}
+.c-nav__link:hover svg {
+  fill: var(--color-text);
+}
+.c-nav__link--active {
+  border-color: var(--color-primary);
+}
+.c-nav__link svg {
+  display: block;
+}
+
+.c-section {
+  position: relative;
+  display: none;
+}
+.c-section--active {
+  display: block;
+}
+.c-section__content {
+  padding: var(--spacing-m);
+}
+
+.c-main {
+  flex-grow: 1;
+}
+
+.c-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-m) 0 var(--spacing-s) 0;
+}
+.c-controls--active {
+  color: var(--color-primary);
+}
+.c-controls__button {
+  font-size: 120%;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0; /* Override Firefox styles. */
+}
+.c-controls__volume {
+  width: 160px;
+}
+.c-controls__volume input {
+  min-width: 100%;
+  margin: 0; /* Override browser styles. */
+  padding: 0; /* Override browser styles. */
+  inline-size: 100%; /* Override Firefox styles. */
+}
+.c-controls__repeat {
+  position: relative;
+}
+.c-controls__repeat__one::after {
+  content: '1';
+  position: absolute;
+  top: 0;
+  right: -6px;
+  font-size: 70%;
+}
+
+.c-share {
+  display: flex;
+  list-style: none; /* Override browser styles. */
+  padding: 0; /* Override browser styles. */
+  margin: 0; /* Override browser styles. */
+}
+.c-share__now,
+.c-share__more {
+  display: block;
+}
+.c-share__now  {
+  flex-grow: 1;
+  margin-right: 1px;
+}
+.c-share__more {
+  flex-shrink: 0;
+  position: relative;
+  width: 50px;
+}
+.c-share__more button:focus + * {
+  display: block;
+  position: absolute;
+  top: 100%;
+  right: 0;
+}
+.c-share__dropdown {
+  display: none;
+  background-color: var(--color-primary);
+  margin: 1px 0 0 0;
+  list-style: none; /* Override browser styles. */
+  padding: 0; /* Override browser styles. */
+}
+.c-share__button {
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .06rem;
+  width: 100%;
+  padding: var(--spacing-s) var(--spacing-m);
+  background-color: var(--color-primary);
+  color: #fff;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background-color .2s;
+}
+.c-share__button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.c-progress {
+  position: relative;
+  width: 100%;
+  height: var(--progress-height);
+  background-color: var(--color-background-progress);
+}
+.c-progress__bar {
+  position: absolute;
+  height: var(--progress-height);
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 4px solid var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .99s;
+}
+.c-progress__timing {
+  color: var(--color-text-progress);
+  font-size: 60%;
+  text-align: right;
+  line-height: var(--progress-height);
+  padding-right: var(--spacing-m);
+}
+
+.c-setup {
+  padding: var(--spacing-m);
+  background-color: var(--color-background-body);
+}
+.c-setup__headline {
+  margin: 0 0 1rem 0;
+}
+
+.c-footer {
+  font-size: 70%;
+  display: flex;
+  background-color: var(--color-background-footer);
+  color: var(--color-text-footer);
+  padding: var(--spacing-s);
+}
+.c-footer a,
+.c-footer a:visited {
+  color: var(--color-text-footer);
+  text-decoration: none;
+}
+.c-footer a:hover {
+  color: var(--color-text);
+}
+.c-footer__name {
+  flex-grow: 1;
+}
+.c-footer__version {
+  flex-grow: 1;
+  text-align: right;
 }
 
 /* Animations */

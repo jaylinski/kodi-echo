@@ -79,6 +79,15 @@ export default class WebSocketApi extends EventTarget {
     return requestPromise;
   }
 
+  /**
+   * Listen to an event from Kodi.
+   *
+   * This is convenience method. By using this method instead of `addEventListener()`
+   * we don't have to handle the JSON nesting from Kodi responses.
+   *
+   * @param method
+   * @param callback
+   */
   listen(method, callback) {
     this.addEventListener(method, (event) => callback(event.detail.params.data));
   }

@@ -34,12 +34,12 @@ export default class View extends EventTarget {
 
   template({ store, i18n, manifest }) {
     // If no options are set, show the user a link to the options page.
-    if (!store.options.ip) return setup();
+    if (!store.options.ip) return setup(i18n);
 
     return `
       ${header(store)}
-      ${status(store)}
-      ${main(store)}
+      ${status(store, i18n)}
+      ${main(store, i18n)}
       ${footer(i18n, manifest)}
     `;
   }
@@ -50,39 +50,38 @@ export default class View extends EventTarget {
       browser.runtime.openOptionsPage();
     });
 
-    const routes = document.querySelectorAll('.c-body--sidebar a');
+    const routes = document.querySelectorAll('.c-nav__link');
     routes.forEach((route) => {
-      route.addEventListener('click', (event) => {
-        console.log(event);
-        this.store.commit('route', event.target.dataset.route);
+      route.addEventListener('click', () => {
+        this.store.commit('route', route.dataset.route);
       });
     });
 
-    document.querySelector('.c-body--share button').addEventListener('click', () => {
+    document.querySelector('#share').addEventListener('click', () => {
       this.dispatchEvent(new CustomEvent('kodi.share.click'));
     });
-    document.querySelector('.c-body--controls-playpause').addEventListener('click', () => {
+    document.querySelector('.c-controls__playpause').addEventListener('click', () => {
       this.dispatchEvent(new CustomEvent('kodi.player.playpause'));
     });
-    document.querySelector('.c-body--controls-stop').addEventListener('click', () => {
+    document.querySelector('.c-controls__stop').addEventListener('click', () => {
       this.dispatchEvent(new CustomEvent('kodi.player.stop'));
     });
-    document.querySelector('.c-body--controls-previous').addEventListener('click', () => {
+    document.querySelector('.c-controls__previous').addEventListener('click', () => {
       this.dispatchEvent(new CustomEvent('kodi.player.goto.previous'));
     });
-    document.querySelector('.c-body--controls-next').addEventListener('click', () => {
+    document.querySelector('.c-controls__next').addEventListener('click', () => {
       this.dispatchEvent(new CustomEvent('kodi.player.goto.next'));
     });
-    document.querySelector('.c-body--controls-volume').addEventListener('change', (event) => {
+    document.querySelector('.c-controls__volume').addEventListener('change', (event) => {
       this.dispatchEvent(new CustomEvent('kodi.volume.set', { detail: event.target.valueAsNumber }));
     });
-    document.querySelector('.c-body--controls-mute').addEventListener('click', () => {
+    document.querySelector('.c-controls__mute').addEventListener('click', () => {
       this.dispatchEvent(new CustomEvent('kodi.volume.mute'));
     });
-    document.querySelector('.c-body--controls-repeat').addEventListener('click', () => {
+    document.querySelector('.c-controls__repeat').addEventListener('click', () => {
       this.dispatchEvent(new CustomEvent('kodi.player.repeat'));
     });
-    document.querySelector('.c-body--controls-shuffle').addEventListener('click', () => {
+    document.querySelector('.c-controls__shuffle').addEventListener('click', () => {
       this.dispatchEvent(new CustomEvent('kodi.player.shuffle'));
     });
   }

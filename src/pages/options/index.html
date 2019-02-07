@@ -8,11 +8,11 @@
 <body>
   <form>
     <div class="c-form">
-      <div class="c-form--host">
+      <div class="c-form__host">
         <label for="option_ip">Host/IP</label>
         <input type="text" id="option_ip" value="" placeholder="192.168.0.99">
       </div>
-      <div class="c-form--port">
+      <div class="c-form-__port">
         <label for="option_port">Port</label>
         <input type="number" id="option_port" value="" placeholder="9090">
       </div>
@@ -26,9 +26,11 @@
       <input type="password" id="option_password" value="" placeholder="Password">
     </div>
     <div>
-      <button type="submit" data-i18n="optionsSave">Save</button>
+      <button type="submit">
+        <span data-i18n="optionsSave">Save</span>
+        <span id="option_submit_status"></span>
+      </button>
     </div>
   </form>
-  <div class="c-status"></div>
 </body>
 </html>

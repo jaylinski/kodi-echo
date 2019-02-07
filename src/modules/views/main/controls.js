@@ -13,13 +13,13 @@ function calculateProgress(progress) {
       const timeDiff = (Date.now() - progress.current) / 1000;
       const currentTime = time + timeDiff;
 
-      const progressBar = document.querySelector('.c-progress--bar');
+      const progressBar = document.querySelector('.c-progress__bar');
       if (progressBar) {
         const duration = progress.duration.hours * 3600 + progress.duration.minutes * 60 + progress.duration.seconds;
         progressBar.setAttribute('style', `transform:scaleX(${currentTime / duration})`);
       }
 
-      const progressTiming = document.querySelector('.c-progress--timing-current');
+      const progressTiming = document.querySelector('.c-progress__timing-current');
       if (progressTiming) {
         const hours = Math.floor(currentTime / 3600);
         const minutes = Math.floor((currentTime - hours * 3600) / 60);
@@ -36,15 +36,15 @@ function progress(progress) {
   calculateProgress(progress);
   return `
 <div class="c-progress">
-  <div class="c-progress--bar"></div>
-  <div class="c-progress--timing">
-    <span class="c-progress--timing-current">
+  <div class="c-progress__bar"></div>
+  <div class="c-progress__timing">
+    <span class="c-progress__timing-current">
       ${
         progress.time.hours ? progress.time.hours.toString().concat(':') : ''
       }${progress.time.minutes.toString().padStart(2, '0')}:${progress.time.seconds.toString().padStart(2, '0')}
     </span>
-    <span class="c-progress--timing-divider">/</span>
-    <span class="c-progress--timing-duration">
+    <span class="c-progress__timing-divider">/</span>
+    <span class="c-progress__timing-duration">
       ${
         progress.duration.hours ? progress.duration.hours.toString().concat(':') : ''
       }${progress.duration.minutes.toString().padStart(2, '0')}:${progress.duration.seconds.toString().padStart(2, '0')}
@@ -53,39 +53,51 @@ function progress(progress) {
 </div>`;
 }
 
-export default (store) => `
-<div class="c-body--controls-container">
-  <div class="c-body--share">
-    <button>Play</button>
+export default (store, i18n) => `
+<div class="c-section__content">
+  <ul class="c-share">
+    <li class="c-share__now">
+      <button id="share" class="c-share__button">${i18n.getMessage('mainControlsPlay')}</button>
+    </li>
+    <li class="c-share__more">
+      <button class="c-share__button">⁝</button>
+      <ul class="c-share__dropdown">
+        <li>
+          <button id="share" class="c-share__button">${i18n.getMessage('mainControlsQueue')}</button>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <div class="c-controls">
+    <div class="c-controls__previous">
+      <button class="c-controls__button" title="${i18n.getMessage('mainControlsPrev')}">⏮</button>
+    </div>
+    <div class="c-controls__playpause">
+      <button class="c-controls__button" title="${i18n.getMessage('mainControlsPause')}">${
+  store.paused ? '►' : '⏸'
+}</button>
+    </div>
+    <div class="c-controls__stop">
+      <button class="c-controls__button" title="${i18n.getMessage('mainControlsStop')}">⏹</button>
+    </div>
+    <div class="c-controls__next">
+      <button class="c-controls__button" title="${i18n.getMessage('mainControlsNext')}">⏭</button>
+    </div>
   </div>
-  <div class="c-body--controls">
-    <div class="c-body--controls-previous">
-      <button class="c-body--controls-button" title="Previous">⏮</button>
+  <div class="c-controls">
+    <div class="c-controls__volume">
+      <input type="range" min="0" max="100" value="${store.volume}" title="${i18n.getMessage('mainControlsVolumne')}">
     </div>
-    <div class="c-body--controls-playpause">
-      <button class="c-body--controls-button" title="Play or pause">${store.paused ? '►' : '⏸'}</button>
+    <div class="c-controls__mute ${store.muted ? 'c-controls__active' : ''}">
+        <button class="c-controls__button" title="${i18n.getMessage('mainControlsMute')}">🔇</button>
     </div>
-    <div class="c-body--controls-stop">
-      <button class="c-body--controls-button" title="Stop">⏹</button>
-    </div>
-    <div class="c-body--controls-next">
-      <button class="c-body--controls-button" title="Next">⏭</button>
-    </div>
-  </div>
-  <div class="c-body--controls">
-    <div class="c-body--controls-volume">
-      <input type="range" min="0" max="100" value="${store.volume}" title="Volume">
-    </div>
-    <div class="c-body--controls-mute ${store.muted ? 'c-body--controls__active' : ''}">
-        <button class="c-body--controls-button" title="Mute">🔇</button>
-    </div>
-    <div class="c-body--controls-repeat ${store.repeat !== 'off' ? 'c-body--controls__active' : ''} ${
-  store.repeat === 'one' ? 'c-body--controls-repeat__one' : ''
+    <div class="c-controls__repeat ${store.repeat !== 'off' ? 'c-controls__active' : ''} ${
+  store.repeat === 'one' ? 'c-controls__repeat__one' : ''
 }">
-      <button class="c-body--controls-button" title="Repeat">🔁</button>
+      <button class="c-controls__button" title="${i18n.getMessage('mainControlsRepeat')}">🔁</button>
     </div>
-    <div class="c-body--controls-shuffle ${store.shuffled ? 'c-body--controls__active' : ''}">
-      <button class="c-body--controls-button" title="Shuffle">🔀</button>
+    <div class="c-controls__shuffle ${store.shuffled ? 'c-controls__active' : ''}">
+      <button class="c-controls__button" title="${i18n.getMessage('mainControlsShuffle')}">🔀</button>
     </div>
   </div>
 </div>

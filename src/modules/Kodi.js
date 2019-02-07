@@ -81,7 +81,7 @@ export default class Kodi {
 
       const playerProps = await this.api.send('Player.GetProperties', [
         this.activePlayerId,
-        ['shuffled', 'repeat', 'time', 'totaltime', 'percentage'],
+        ['playlistid', 'shuffled', 'repeat', 'time', 'totaltime', 'percentage'],
       ]);
       this.app.store.commit('shuffled', playerProps.shuffled);
       this.app.store.commit('repeat', playerProps.repeat);
@@ -92,7 +92,13 @@ export default class Kodi {
         current: Date.now(),
       });
 
-      // TODO We could also use the thumbnail, but a request to a third party would be made. #privacy
+      const playlist = await this.api.send('Playlist.GetItems', [
+        playerProps.playlistid,
+        ['title', 'artist', 'duration'],
+      ]);
+      this.app.store.commit('playlist', playlist.items || []);
+
+      // TODO We could also use the thumbnail, but a request to a third party would be made. Maybe make this opt-in?
       const playing = await this.api.send('Player.GetItem', [this.activePlayerId, []]);
       this.app.store.commit('playing', playing.item.label !== '' ? playing.item : false);
 
@@ -101,10 +107,10 @@ export default class Kodi {
         this.app.store.commit('volume', message.volume);
         this.app.store.commit('muted', message.muted);
       });
-      this.api.listen('Player.OnPlay', async (event) => {
+      this.api.listen('Player.OnPlay', (event) => {
         this.app.store.commit('playing', event.item.title !== '' ? event.item : false);
       });
-      this.api.listen('Player.OnPause', async () => {
+      this.api.listen('Player.OnPause', () => {
         this.app.store.commit('paused', true);
       });
       this.api.listen('Player.OnStop', () => {

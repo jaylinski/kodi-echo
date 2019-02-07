@@ -9,7 +9,7 @@ function getOptionsFromForm() {
     ip: document.querySelector('#option_ip').value,
     port: document.querySelector('#option_port').value,
     user: document.querySelector('#option_user').value,
-    password: document.querySelector('#option_password').value, // TODO encrypt?
+    password: document.querySelector('#option_password').value, // TODO Protect with encryption?
   };
 }
 
@@ -23,8 +23,14 @@ function i18n() {
 async function save(event) {
   event.preventDefault();
   const options = getOptionsFromForm();
+  const optionsSubmitStatus = document.querySelector('#option_submit_status');
   await localStorageOptions.saveToStorage(options);
-  document.querySelector('.c-status').textContent = 'Saved!';
+  optionsSubmitStatus.textContent = '✓';
+
+  // Reset status information.
+  window.setTimeout(() => {
+    optionsSubmitStatus.textContent = '';
+  }, 3000);
 }
 
 async function restore() {

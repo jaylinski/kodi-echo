@@ -5,6 +5,54 @@
   "extensionDescription": {
     "message": "Mit Kodi Echo kannst du Web-Inhalte mit Kodi teilen."
   },
+  "setupHeadline": {
+    "message": "Willkommen!"
+  },
+  "setupInstruction": {
+    "message": "Um Kodi Echo zu verwenden, gib bitte zuerst deine <a href=\"#\" id=\"open-options\">Kodi-Verbindung</a> an."
+  },
+  "statusNoConnection": {
+    "message": "Verbindung mit Kodi konnte nicht hergestellt werden"
+  },
+  "statusApiError": {
+    "message": "Fehler bei Kommunikation mit Kodi"
+  },
+  "navControls": {
+    "message": "Fernbedienung"
+  },
+  "navPlaylist": {
+    "message": "Wiedergabeliste"
+  },
+  "mainControlsPlay": {
+    "message": "Abspielen"
+  },
+  "mainControlsPause": {
+    "message": "Pause"
+  },
+  "mainControlsStop": {
+    "message": "Stopp"
+  },
+  "mainControlsPrev": {
+    "message": "Zurück"
+  },
+  "mainControlsNext": {
+    "message": "Weiter"
+  },
+  "mainControlsVolumne": {
+    "message": "Lautstärke"
+  },
+  "mainControlsMute": {
+    "message": "Stumm"
+  },
+  "mainControlsRepeat": {
+    "message": "Wiederholen"
+  },
+  "mainControlsShuffle": {
+    "message": "Zufällige Wiedergabe"
+  },
+  "mainControlsQueue": {
+    "message": "In Warteschlange einreihen"
+  },
   "footerHelp": {
     "message": "Hilfe"
   },
@@ -19,5 +67,11 @@
   },
   "optionsSave": {
     "message": "Speichern"
+  },
+  "menuPlay": {
+    "message": "► Abspielen"
+  },
+  "menuQueue": {
+    "message": "In Warteschlange einreihen"
   }
 }

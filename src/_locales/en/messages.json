@@ -1,11 +1,57 @@
 {
   "extensionName": {
-    "message": "Kodi Echo",
-    "description": "Name of the extension."
+    "message": "Kodi Echo"
   },
   "extensionDescription": {
-    "message": "With Kodi Echo you can share web content with Kodi.",
-    "description": "Description of the extension."
+    "message": "With Kodi Echo you can share web content with Kodi."
+  },
+  "setupHeadline": {
+    "message": "Welcome!"
+  },
+  "setupInstruction": {
+    "message": "In order to use Kodi Echo, please first <a href=\"#\" id=\"open-options\">setup your Kodi connection</a>."
+  },
+  "statusNoConnection": {
+    "message": "Could not establish connection with Kodi"
+  },
+  "statusApiError": {
+    "message": "Error while sending data to Kodi"
+  },
+  "navControls": {
+    "message": "Controls"
+  },
+  "navPlaylist": {
+    "message": "Playlist"
+  },
+  "mainControlsPlay": {
+    "message": "Play"
+  },
+  "mainControlsPause": {
+    "message": "Pause"
+  },
+  "mainControlsStop": {
+    "message": "Stop"
+  },
+  "mainControlsPrev": {
+    "message": "Previous"
+  },
+  "mainControlsNext": {
+    "message": "Next"
+  },
+  "mainControlsVolumne": {
+    "message": "Volume"
+  },
+  "mainControlsMute": {
+    "message": "Mute"
+  },
+  "mainControlsRepeat": {
+    "message": "Repeat"
+  },
+  "mainControlsShuffle": {
+    "message": "Shuffle"
+  },
+  "mainControlsQueue": {
+    "message": "Queue"
   },
   "footerHelp": {
     "message": "Help"
@@ -21,5 +67,11 @@
   },
   "optionsSave": {
     "message": "Save"
+  },
+  "menuPlay": {
+    "message": "► Play"
+  },
+  "menuQueue": {
+    "message": "Queue"
   }
 }

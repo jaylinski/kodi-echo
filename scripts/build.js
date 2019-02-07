@@ -9,22 +9,22 @@ const sharp = require('sharp');
 
 const images = [
   {
-    src: './src/assets/icon.png',
+    src: './src/assets/logo.png',
     dst: './build/assets/icon-48.png',
     size: 48,
   },
   {
-    src: './src/assets/icon.png',
+    src: './src/assets/logo.png',
     dst: './build/assets/icon-96.png',
     size: 96,
   },
   {
-    src: './src/assets/icon.png',
+    src: './src/assets/logo.png',
     dst: './build/assets/icon-128.png',
     size: 128,
   },
   {
-    src: './src/assets/icon.png',
+    src: './src/assets/logo.png',
     dst: './build/assets/icon-256.png',
     size: 256,
   },

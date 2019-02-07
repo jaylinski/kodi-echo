@@ -26,17 +26,13 @@ div {
   margin-bottom: 10px;
 }
 
-.c-status {
-  font-weight: bold;
-}
-
 .c-form {
   display: flex;
 }
-.c-form--host {
+.c-form__host {
   flex-grow: 1;
   margin-right: 1em;
 }
-.c-form--port {
+.c-form__port {
   max-width: 100px;
 }

@@ -49,7 +49,7 @@ options.getFormStorage().then(async () => {
   });
 
   // TODO Restrict to `targetUrlPatterns` according to available plugins?
-  // TODO Change to standard `browser.menus.(create|onClicked)` as soon as possible!
+  // TODO Change to standard `browser.menus.(create|onClicked)` as soon as supported by browsers!
   browser.contextMenus.create({
     id: 'kodi',
     title: browser.i18n.getMessage('extensionName'),
@@ -58,13 +58,13 @@ options.getFormStorage().then(async () => {
   browser.contextMenus.create({
     id: 'kodi-play',
     parentId: 'kodi',
-    title: '► Play',
+    title: browser.i18n.getMessage('menuPlay'),
     contexts: ['link'],
   });
   browser.contextMenus.create({
     id: 'kodi-queue',
     parentId: 'kodi',
-    title: 'Queue',
+    title: browser.i18n.getMessage('menuQueue'),
     contexts: ['link'],
     enabled: false, // TODO Implement.
   });

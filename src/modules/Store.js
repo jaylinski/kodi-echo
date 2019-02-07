@@ -17,6 +17,7 @@ export default class Store extends EventTarget {
     this.repeat = 'off';
     this.shuffled = false;
     this.route = 'controls';
+    this.playlist = [];
   }
 
   commit(key, callback) {
