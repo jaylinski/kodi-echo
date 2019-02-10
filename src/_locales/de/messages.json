@@ -38,7 +38,7 @@
   "mainControlsNext": {
     "message": "Weiter"
   },
-  "mainControlsVolumne": {
+  "mainControlsVolume": {
     "message": "Lautstärke"
   },
   "mainControlsMute": {
@@ -73,5 +73,11 @@
   },
   "menuQueue": {
     "message": "In Warteschlange einreihen"
+  },
+  "helpHeadline": {
+    "message": "Hilfe"
+  },
+  "helpText": {
+    "message": "Du suchts Hilfe? Probier es mit einem der folgenden Links:"
   }
 }

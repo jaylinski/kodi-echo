@@ -7,6 +7,7 @@ const sharp = require('sharp');
 // ### Configuration
 // #######################
 
+const node_modules = ['lit-html'];
 const images = [
   {
     src: './src/assets/logo.png',
@@ -39,11 +40,24 @@ console.log('Building ...');
 fs.mkdirSync('./build');
 
 // Copy files.
-glob('./src/**/*.*', {}, (error, files) => {
+console.log('Copying source files ...');
+glob('./src/**/*.*', { ignore: './src/node_modules/**/*' }, (error, files) => {
   files.map((src) => {
     const dest = src.replace('/src/', '/build/');
     mkdirSyncP(path.dirname(dest));
     fs.createReadStream(src).pipe(fs.createWriteStream(dest));
+  });
+});
+
+// Copy dependencies.
+console.log('Copying node modules ...');
+node_modules.map((module) => {
+  glob(`./node_modules/${module}/**/*.js`, {}, (error, files) => {
+    files.map((src) => {
+      const dest = src.replace('/node_modules/', '/build/node_modules/');
+      mkdirSyncP(path.dirname(dest));
+      fs.createReadStream(src).pipe(fs.createWriteStream(dest));
+    });
   });
 });
 
@@ -55,6 +69,8 @@ images.map(function(image) {
     .pipe(sharp().resize(image.size))
     .pipe(fs.createWriteStream(image.dst));
 });
+
+console.log('Build finished!');
 
 // #######################
 // ### Utils

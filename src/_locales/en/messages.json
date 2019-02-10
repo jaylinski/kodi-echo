@@ -38,7 +38,7 @@
   "mainControlsNext": {
     "message": "Next"
   },
-  "mainControlsVolumne": {
+  "mainControlsVolume": {
     "message": "Volume"
   },
   "mainControlsMute": {
@@ -73,5 +73,11 @@
   },
   "menuQueue": {
     "message": "Queue"
+  },
+  "helpHeadline": {
+    "message": "Help"
+  },
+  "helpText": {
+    "message": "You need help? Try one of the following links:"
   }
 }

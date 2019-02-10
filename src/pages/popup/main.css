@@ -1,10 +1,10 @@
 :root {
   --color-primary: #2eb1e7;
   --color-primary-hover: #1598CE;
+  --color-control-button: #444444;
   --color-text: rgba(255, 255, 255, .8);
   --color-text-progress: rgba(255, 255, 255, .5);
   --color-text-footer: rgba(255, 255, 255, .4);
-  --color-text-sidebar: #2b2f30;
   --color-background-header: #1e2122;
   --color-background-progress: #353637;
   --color-background-progress-active: #353637;
@@ -18,7 +18,9 @@
   --font-size: 120%;
   --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Ubuntu, Helvetica, Arial, sans-serif;
   --progress-height: 2rem;
+  --progress-border-size: 4px;
   --sidebar-width: 44px;
+  --nav-link-border-size: 4px;
   --z-index-sidebar: 10;
 }
 
@@ -144,20 +146,18 @@ p, pre {
 }
 .c-nav__link {
   display: block;
-  color: var(--color-text-sidebar);
-  padding: var(--spacing-s);
+  padding: var(--spacing-s) var(--spacing-s) var(--spacing-s) calc(var(--spacing-s) - var(--nav-link-border-size));
   text-align: center;
-  border-left: 4px solid transparent;
+  border-left: var(--nav-link-border-size) solid transparent;
 }
 .c-nav__link:hover {
   background-color: var(--color-primary);
-  color: var(--color-text);
 }
 .c-nav__link:hover svg {
   fill: var(--color-text);
 }
 .c-nav__link--active {
-  border-color: var(--color-primary);
+  border-left-color: var(--color-primary);
 }
 .c-nav__link svg {
   display: block;
@@ -180,9 +180,8 @@ p, pre {
 
 .c-controls {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: var(--spacing-m) 0 var(--spacing-s) 0;
+  padding: var(--spacing-m) 0 0 0;
 }
 .c-controls--active {
   color: var(--color-primary);
@@ -191,10 +190,17 @@ p, pre {
   font-size: 120%;
   background-color: transparent;
   cursor: pointer;
-  padding: 0; /* Override Firefox styles. */
+  border: 1px solid #444;
+  padding: var(--spacing-xs) 0;
+  text-align: center;
+  width: 58px;
+  transition: background-color .1s;
+}
+.c-controls__button:hover {
+  background-color: var(--color-control-button);
 }
 .c-controls__volume {
-  width: 160px;
+  width: 100%;
 }
 .c-controls__volume input {
   min-width: 100%;
@@ -208,8 +214,8 @@ p, pre {
 .c-controls__repeat__one::after {
   content: '1';
   position: absolute;
-  top: 0;
-  right: -6px;
+  top: 4px;
+  right: 8px;
   font-size: 70%;
 }
 
@@ -230,7 +236,7 @@ p, pre {
 .c-share__more {
   flex-shrink: 0;
   position: relative;
-  width: 50px;
+  width: 58px;
 }
 .c-share__more button:focus + * {
   display: block;
@@ -261,6 +267,12 @@ p, pre {
 .c-share__button:hover {
   background-color: var(--color-primary-hover);
 }
+.c-share__button--dropdown {
+  font-size: .6rem;
+  font-weight: normal;
+  letter-spacing: normal;
+  white-space: nowrap;
+}
 
 .c-progress {
   position: relative;
@@ -274,10 +286,10 @@ p, pre {
   top: 0;
   left: 0;
   right: 0;
-  border-bottom: 4px solid var(--color-primary);
+  border-bottom: var(--progress-border-size) solid var(--color-primary);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform .99s;
+  transition: transform .9s;
 }
 .c-progress__timing {
   color: var(--color-text-progress);
@@ -292,6 +304,11 @@ p, pre {
   background-color: var(--color-background-body);
 }
 .c-setup__headline {
+  margin: 0 0 1rem 0;
+}
+
+.c-help {}
+.c-help__headline {
   margin: 0 0 1rem 0;
 }
 

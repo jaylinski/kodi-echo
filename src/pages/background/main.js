@@ -1,22 +1,18 @@
-import Kodi from './../../modules/Kodi.js';
 import Options from './../../modules/Options.js';
-import WebSocketApi from './../../modules/WebSocketApi.js';
-import { getBrowser, getBrowserInfo } from './../../utils/browser.js';
+import Kodi from '../../modules/Kodi.js';
+import { getBrowser, getBrowserInfo } from './../../modules/utils/browser.js';
 
 const options = new Options();
 
 options.getFormStorage().then(async () => {
-  const api = new WebSocketApi(options);
-  const kodi = new Kodi('background', options); // TODO Avoid this weird `background` param.
+  const kodi = new Kodi(options);
   const browser = getBrowser();
   const browserInfo = getBrowserInfo();
   const manifest = browser.runtime.getManifest();
 
-  await api.connect();
-
   console.debug(browserInfo.name);
 
-  api.listen('Player.OnStop', () => {
+  kodi.api.listen('Player.OnStop', () => {
     const notificationOptions = {
       type: 'basic',
       title: browser.i18n.getMessage('extensionName'),

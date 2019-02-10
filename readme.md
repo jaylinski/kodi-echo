@@ -93,6 +93,7 @@ Run `npm run build`.
 
 ### Dependencies
 
+* `lit-html` &rarr; Templating library
 * `glob` &rarr; File selection
 * `onchange` &rarr; Watch mode
 * `prettier` &rarr; Code formatting

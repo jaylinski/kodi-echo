@@ -1,66 +1,37 @@
 import WebSocketApi from './WebSocketApi.js';
-import { getActiveTab } from './../utils/tabs.js';
-import { getLocal, setLocal } from './../utils/storage.js';
+import { getLocal, setLocal } from './utils/storage.js';
 import { getPluginByUrl } from './plugin.js';
 
-export default class Kodi {
-  constructor(app, options) {
-    this.app = app;
-    this.options = options;
-    this.activePlayerId = 0;
-    this.api = new WebSocketApi(options);
+export default class Kodi extends EventTarget {
+  constructor(options) {
+    super();
 
-    if (this.app !== 'background') this.listeners(); // TODO Get rid of "app" or mock it?
+    this.api = new WebSocketApi(options);
+    this.activePlayerId = 0;
+
+    this.listeners();
 
     this.api.connect().then(async () => {
-      if (this.app !== 'background') await this.sync(); // TODO Get rid of "app" or mock it?
-      // TODO Activate controls *after* sync to avoid conflicts?
+      await this.sync();
     });
   }
 
   listeners() {
-    this.app.addEventListener('kodi.share.click', async () => {
-      const activeTab = await getActiveTab();
-      await this.share(new URL(activeTab.url));
-    });
-    this.app.addEventListener('kodi.player.playpause', async () => {
-      await this.setPlayPause();
-      const props = await this.api.send('Player.GetProperties', [this.activePlayerId, ['speed']]);
-      this.app.store.commit('paused', props.speed === 0);
-    });
-    this.app.addEventListener('kodi.player.stop', async () => {
-      await this.setStop();
-    });
-    this.app.addEventListener('kodi.player.goto.previous', async () => {
-      await this.setGoTo('previous');
-    });
-    this.app.addEventListener('kodi.player.goto.next', async () => {
-      await this.setGoTo('next');
-    });
-    this.app.addEventListener('kodi.volume.set', async (event) => {
-      this.app.store.commit('volume', event.detail);
-      await this.setVolume(event.detail);
-    });
-    this.app.addEventListener('kodi.volume.mute', async () => {
-      const mute = this.app.store.commit('muted', (muted) => !muted);
-      await this.setMute(mute);
-    });
-    this.app.addEventListener('kodi.player.repeat', async () => {
-      await this.setRepeat();
-      const props = await this.api.send('Player.GetProperties', [this.activePlayerId, ['repeat']]);
-      this.app.store.commit('repeat', props.repeat);
-    });
-    this.app.addEventListener('kodi.player.shuffle', async () => {
-      await this.setShuffle();
-      const props = await this.api.send('Player.GetProperties', [this.activePlayerId, ['shuffled']]);
-      this.app.store.commit('shuffled', props.shuffled);
-    });
+    // Listen for events about connectivity.
     this.api.addEventListener('api.connected', (event) => {
-      this.app.store.commit('apiConnected', event.detail);
+      this.dispatchEvent(new CustomEvent('api.connected', { detail: event.detail }));
     });
     this.api.addEventListener('api.active', (event) => {
-      this.app.store.commit('apiActive', event.detail);
+      this.dispatchEvent(new CustomEvent('api.active', { detail: event.detail }));
     });
+
+    // Listen for events from Kodi.
+    // We could immediately use the sent information to update the store, but it easier to just do another sync.
+    this.api.listen('Application.OnVolumeChanged', () => this.sync());
+    this.api.listen('Player.OnPropertyChanged', () => this.sync());
+    this.api.listen('Player.OnPlay', () => this.sync());
+    this.api.listen('Player.OnPause', () => this.sync());
+    this.api.listen('Player.OnStop', () => this.sync());
   }
 
   /**
@@ -69,75 +40,42 @@ export default class Kodi {
    * @returns {Promise<void>}
    */
   async sync() {
-    // TODO Do a global sync to avoid race conditions.
-    try {
-      // Get properties and update UI.
-      const appProps = await this.api.send('Application.GetProperties', [['volume', 'muted']]);
-      this.app.store.commit('volume', appProps.volume);
-      this.app.store.commit('muted', appProps.muted);
+    const appProps = await this.api.send('Application.GetProperties', [['volume', 'muted']]);
+    const activePlayers = await this.api.send('Player.GetActivePlayers', []);
+    this.activePlayerId = activePlayers.length > 0 ? activePlayers[0].playerid : 0;
+    const playerProps = await this.api.send('Player.GetProperties', [
+      this.activePlayerId,
+      ['playlistid', 'shuffled', 'repeat', 'time', 'totaltime', 'percentage', 'speed'],
+    ]);
+    const playing = await this.api.send('Player.GetItem', [this.activePlayerId, []]);
+    const playlist = await this.api.send('Playlist.GetItems', [
+      playerProps.playlistid,
+      ['title', 'artist', 'duration'],
+    ]);
 
-      const activePlayers = await this.api.send('Player.GetActivePlayers', []);
-      this.activePlayerId = activePlayers.length > 0 ? activePlayers[0].playerid : 0;
-
-      const playerProps = await this.api.send('Player.GetProperties', [
-        this.activePlayerId,
-        ['playlistid', 'shuffled', 'repeat', 'time', 'totaltime', 'percentage'],
-      ]);
-      this.app.store.commit('shuffled', playerProps.shuffled);
-      this.app.store.commit('repeat', playerProps.repeat);
-      this.app.store.commit('progress', {
-        time: playerProps.time,
-        duration: playerProps.totaltime,
-        percentage: playerProps.percentage,
-        current: Date.now(),
-      });
-
-      const playlist = await this.api.send('Playlist.GetItems', [
-        playerProps.playlistid,
-        ['title', 'artist', 'duration'],
-      ]);
-      this.app.store.commit('playlist', playlist.items || []);
-
-      // TODO We could also use the thumbnail, but a request to a third party would be made. Maybe make this opt-in?
-      const playing = await this.api.send('Player.GetItem', [this.activePlayerId, []]);
-      this.app.store.commit('playing', playing.item.label !== '' ? playing.item : false);
-
-      // Listen for events from Kodi.
-      this.api.listen('Application.OnVolumeChanged', (message) => {
-        this.app.store.commit('volume', message.volume);
-        this.app.store.commit('muted', message.muted);
-      });
-      this.api.listen('Player.OnPlay', (event) => {
-        this.app.store.commit('playing', event.item.title !== '' ? event.item : false);
-      });
-      this.api.listen('Player.OnPause', () => {
-        this.app.store.commit('paused', true);
-      });
-      this.api.listen('Player.OnStop', () => {
-        this.app.store.commit('paused', false);
-        this.app.store.commit('playing', false);
-        this.app.store.commit('progress', false);
-      });
-    } catch (error) {
-      this.app.store.commit('apiError', error);
-    }
+    this.dispatchEvent(
+      new CustomEvent('sync', {
+        detail: {
+          appProps,
+          playerProps,
+          playing,
+          playlist,
+        },
+      })
+    );
   }
 
   async share(url) {
+    const plugin = getPluginByUrl(url);
+    const pluginPath = await plugin.getPluginPath({ url });
+
     try {
-      const plugin = getPluginByUrl(url);
-      const pluginPath = await plugin.getPluginPath({ url });
-
-      try {
-        plugin.stopCurrentlyPlayingMedia(); // TODO An interface would be nice.
-      } catch (error) {
-        console.warn(error);
-      }
-
-      await this.play(pluginPath);
+      plugin.stopCurrentlyPlayingMedia(); // TODO An interface would be nice (consider adoption of TypeScript).
     } catch (error) {
-      if (this.app !== 'background') this.app.store.commit('apiError', error); // TODO Get rid of "app" or mock it?
+      console.warn(error);
     }
+
+    await this.play(pluginPath);
   }
 
   async play(file) {

@@ -1,11 +1,27 @@
+import { html } from './../../utils/dom.js';
+
 function renderPlaylist(list) {
   if (list.length === 0) {
-    return `<li>Empty</li>`;
+    return html`
+      <li>Empty</li>
+    `;
   }
-  return list.map((item) => `<li>${item.title}</li>`).join('');
+  return html`
+    ${
+      list.map(
+        (item) =>
+          html`
+            <li>${item.title}</li>
+          `
+      )
+    }
+  `;
 }
 
-export default (store) => `
-<div class="c-playlist">
-  <ul>${renderPlaylist(store.playlist)}</ul>
-</div>`;
+export default (store) => html`
+  <div class="c-playlist">
+    <ul>
+      ${renderPlaylist(store.playlist)}
+    </ul>
+  </div>
+`;

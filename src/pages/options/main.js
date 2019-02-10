@@ -1,5 +1,5 @@
 import Options from './../../modules/Options.js';
-import { getBrowser } from './../../utils/browser.js';
+import { getBrowser } from './../../modules/utils/browser.js';
 
 const browser = getBrowser();
 const localStorageOptions = new Options();

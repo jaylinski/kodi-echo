@@ -1,4 +1,4 @@
-import { getLocal, setLocal } from './../utils/storage.js';
+import { getLocal, setLocal } from './utils/storage.js';
 
 export default class Options {
   constructor() {

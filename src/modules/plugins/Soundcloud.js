@@ -1,5 +1,5 @@
 import WebPlugin from './WebPlugin.js';
-import { executeScriptInActiveTab } from './../../utils/tabs.js';
+import { executeScriptInActiveTab } from './../utils/tabs.js';
 
 class Soundcloud extends WebPlugin {
   constructor() {
