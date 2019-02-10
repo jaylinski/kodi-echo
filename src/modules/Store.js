@@ -32,8 +32,12 @@ export default class Store extends EventTarget {
       prev: () => this.kodi.setGoTo('previous'),
       repeat: () => this.kodi.setRepeat(),
       share: async () => {
-        const activeTab = await getActiveTab();
-        this.kodi.share(new URL(activeTab.url));
+        try {
+          const activeTab = await getActiveTab();
+          await this.kodi.share(new URL(activeTab.url));
+        } catch (error) {
+          this.commit('apiError', error);
+        }
       },
       shuffle: () => this.kodi.setShuffle(),
       stop: () => this.kodi.setStop(),
