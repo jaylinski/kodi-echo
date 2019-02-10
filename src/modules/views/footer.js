@@ -3,7 +3,10 @@ import { html } from './../utils/dom.js';
 
 const browser = getBrowser();
 const actions = {
-  options: () => browser.runtime.openOptionsPage(),
+  options: (event) => {
+    event.preventDefault();
+    browser.runtime.openOptionsPage();
+  },
 };
 
 export default (store, i18n, manifest) => html`

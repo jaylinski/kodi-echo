@@ -9,7 +9,10 @@
     "message": "Welcome!"
   },
   "setupInstruction": {
-    "message": "In order to use Kodi Echo, please first <a href=\"#\" id=\"open-options\">setup your Kodi connection</a>."
+    "message": "In order to use Kodi Echo, please first setup your Kodi connection:"
+  },
+  "setupLinkText": {
+    "message": "Go to settings"
   },
   "statusNoConnection": {
     "message": "Could not establish connection with Kodi"

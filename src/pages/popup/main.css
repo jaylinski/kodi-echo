@@ -303,6 +303,9 @@ p, pre {
   padding: var(--spacing-m);
   background-color: var(--color-background-body);
 }
+.c-setup p {
+  margin-bottom: .4em;
+}
 .c-setup__headline {
   margin: 0 0 1rem 0;
 }
