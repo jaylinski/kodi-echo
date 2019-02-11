@@ -43,15 +43,19 @@ function progress(store) {
       <div class="c-progress__bar"></div>
       <div class="c-progress__timing">
         <span class="c-progress__timing-current">
-          ${progress.time.hours ? progress.time.hours.toString().concat(':') : ''}${
-            progress.time.minutes.toString().padStart(2, '0')
-          }:${progress.time.seconds.toString().padStart(2, '0')}
+          ${progress.time.hours
+            ? progress.time.hours.toString().concat(':')
+            : ''}${progress.time.minutes.toString().padStart(2, '0')}:${progress.time.seconds
+            .toString()
+            .padStart(2, '0')}
         </span>
         <span class="c-progress__timing-divider">/</span>
         <span class="c-progress__timing-duration">
-          ${progress.duration.hours ? progress.duration.hours.toString().concat(':') : ''}${
-            progress.duration.minutes.toString().padStart(2, '0')
-          }:${progress.duration.seconds.toString().padStart(2, '0')}
+          ${progress.duration.hours
+            ? progress.duration.hours.toString().concat(':')
+            : ''}${progress.duration.minutes
+            .toString()
+            .padStart(2, '0')}:${progress.duration.seconds.toString().padStart(2, '0')}
         </span>
       </div>
     </div>
@@ -137,9 +141,9 @@ export default (store, i18n) => {
           </button>
         </div>
         <div
-          class="c-controls__repeat ${store.repeat !== 'off' ? 'c-controls--active' : ''} ${
-            store.repeat === 'one' ? 'c-controls__repeat__one' : ''
-          }"
+          class="c-controls__repeat ${store.repeat !== 'off' ? 'c-controls--active' : ''} ${store.repeat === 'one'
+            ? 'c-controls__repeat__one'
+            : ''}"
         >
           <button
             @click="${store.actions.repeat}"

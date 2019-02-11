@@ -7,14 +7,12 @@ function renderPlaylist(list) {
     `;
   }
   return html`
-    ${
-      list.map(
-        (item) =>
-          html`
-            <li>${item.title}</li>
-          `
-      )
-    }
+    ${list.map(
+      (item) =>
+        html`
+          <li>${item.title}</li>
+        `
+    )}
   `;
 }
 

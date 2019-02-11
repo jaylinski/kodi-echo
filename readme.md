@@ -17,6 +17,7 @@ Check out the [comparison between Kodi Echo and Play to Kodi](#comparison-with-p
 * Uses as few permissions as possible & respects your privacy.
 * Does not break websites by avoiding to inject scripts.
 * Lets you replay shared content.
+* Built with the latest technologies the web offers.
 
 <!-- TODO Add screenshots (popup, context menu) -->
 
@@ -75,15 +76,17 @@ It only sends requests to your configured Kodi host.
 
 #### Comparison with Play to Kodi
 
-|                        | Kodi Echo  | Play to Kodi |
+|                        | Kodi Echo  | [Play to Kodi](https://github.com/khloke/play-to-xbmc-chrome) |
 | ---------------------- | ---------- | ------------ |
-| Avoids content scripts | ☑          | ❎            |
-| Adds a context menu    | ☑          | ☑            |
-| Instant replay         | ☑          | ❎            |
+| Avoids content scripts | ✅          | ❎           |
+| Adds a context menu    | ✅          | ✅           |
+| Instant replay         | ✅          | ❎           |
+| Key mappings           | ❎          | ✅           |
+| Favorites              | ❎          | ✅           |
 | Number of plugins      | 3          | \> 30        |
 | Languages (i18n)       | 2 (en, de) | 1 (en)       |
 | Communication          | WebSockets | HTTP         |
-| Uses standard WebExtensions API | ☑ | ❎            |
+| Uses standard WebExtensions API | ✅ | ❎           |
 
 ## Development
 
@@ -91,22 +94,22 @@ It only sends requests to your configured Kodi host.
 
 Run `npm run build`.
 
-### Dependencies
+### Develop
 
-* `lit-html` &rarr; Templating library
-* `glob` &rarr; File selection
-* `onchange` &rarr; Watch mode
-* `prettier` &rarr; Code formatting
-* `sharp` &rarr; Image editing
-* `web-ext` &rarr; Firefox extension building
+Run `npm start`.
 
 ### Roadmap
 
-* Add more controls (Queue button)
-* Resolve all TODOs
-* Test critical code
+* Add more controls (Seek, Queue, Playlist)
+* Disable play button if website is not supported
+* Add key mappings (enter = share, space = play/pause, q = queue)
+  * Support media keys (https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/commands#Media_keys)
+* Consider implementing a "Play this next" feature
 * Get approval from XBMC Foundation for use of logo and name
 * Publish as Firefox Add-on, Chrome Extension and Microsoft Edge Extension
+* Think about moving the options-page to a popup-tab (enables better initial configuration of extension)
+* Make the replay feature optional
+* Test critical code
 
 ## Attributions
 
