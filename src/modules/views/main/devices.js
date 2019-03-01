@@ -42,7 +42,7 @@ export default (store, i18n) => {
           <input type="text" id="option_user" value="${device.user}" placeholder="${i18n.getMessage('optionsUser')}" />
         </div>
         <div class="c-form__group">
-          <label for="option_port" data-i18n="optionsPassword">${i18n.getMessage('optionsPassword')}</label>
+          <label for="option_password" data-i18n="optionsPassword">${i18n.getMessage('optionsPassword')}</label>
           <input
             type="password"
             id="option_password"
