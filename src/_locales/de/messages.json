@@ -5,15 +5,6 @@
   "extensionDescription": {
     "message": "Mit Kodi Echo kannst du Web-Inhalte mit Kodi teilen."
   },
-  "setupHeadline": {
-    "message": "Willkommen!"
-  },
-  "setupInstruction": {
-    "message": "Um Kodi Echo zu verwenden, gib bitte zuerst deine Kodi-Verbindung an:"
-  },
-  "setupLinkText": {
-    "message": "Zu den Einstellungen"
-  },
   "statusNoConnection": {
     "message": "Verbindung mit Kodi konnte nicht hergestellt werden"
   },
@@ -22,6 +13,12 @@
   },
   "navControls": {
     "message": "Fernbedienung"
+  },
+  "navDevices": {
+    "message": "Geräte"
+  },
+  "navOptions": {
+    "message": "Optionen"
   },
   "navPlaylist": {
     "message": "Wiedergabeliste"
@@ -47,6 +44,9 @@
   "mainControlsMute": {
     "message": "Stumm"
   },
+  "mainControlsRemove": {
+    "message": "Entfernen"
+  },
   "mainControlsRepeat": {
     "message": "Wiederholen"
   },
@@ -54,13 +54,19 @@
     "message": "Zufällige Wiedergabe"
   },
   "mainControlsQueue": {
-    "message": "In Warteschlange einreihen"
+    "message": "Zur Wiedergabeliste hinzufügen"
+  },
+  "mainPlaylistEmpty": {
+    "message": "Mit der 'Zur Wiedergabeliste hinzufügen'-Schaltfläche kannst Elemente in die Playlist einfügen."
   },
   "footerHelp": {
     "message": "Hilfe"
   },
   "footerOptions": {
     "message": "Optionen"
+  },
+  "optionsDeviceName": {
+    "message": "Gerätename"
   },
   "optionsUser": {
     "message": "Benutzer"
@@ -71,11 +77,14 @@
   "optionsSave": {
     "message": "Speichern"
   },
+  "optionsReplayNotifications": {
+    "message": "Wiederholungsbenachrichtigung"
+  },
   "menuPlay": {
     "message": "► Abspielen"
   },
   "menuQueue": {
-    "message": "In Warteschlange einreihen"
+    "message": "Zur Wiedergabeliste hinzufügen"
   },
   "helpHeadline": {
     "message": "Hilfe"

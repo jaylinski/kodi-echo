@@ -5,15 +5,6 @@
   "extensionDescription": {
     "message": "With Kodi Echo you can share web content with Kodi."
   },
-  "setupHeadline": {
-    "message": "Welcome!"
-  },
-  "setupInstruction": {
-    "message": "In order to use Kodi Echo, please first setup your Kodi connection:"
-  },
-  "setupLinkText": {
-    "message": "Go to settings"
-  },
   "statusNoConnection": {
     "message": "Could not establish connection with Kodi"
   },
@@ -22,6 +13,12 @@
   },
   "navControls": {
     "message": "Controls"
+  },
+  "navDevices": {
+    "message": "Devices"
+  },
+  "navOptions": {
+    "message": "Options"
   },
   "navPlaylist": {
     "message": "Playlist"
@@ -47,6 +44,9 @@
   "mainControlsMute": {
     "message": "Mute"
   },
+  "mainControlsRemove": {
+    "message": "Remove"
+  },
   "mainControlsRepeat": {
     "message": "Repeat"
   },
@@ -54,7 +54,10 @@
     "message": "Shuffle"
   },
   "mainControlsQueue": {
-    "message": "Queue"
+    "message": "Add to playlist"
+  },
+  "mainPlaylistEmpty": {
+    "message": "You can add items to the playlist by using the queue button."
   },
   "footerHelp": {
     "message": "Help"
@@ -65,17 +68,23 @@
   "optionsUser": {
     "message": "User"
   },
+  "optionsDeviceName": {
+    "message": "Device name"
+  },
   "optionsPassword": {
     "message": "Password"
   },
   "optionsSave": {
     "message": "Save"
   },
+  "optionsReplayNotifications": {
+    "message": "Replay notification"
+  },
   "menuPlay": {
     "message": "► Play"
   },
   "menuQueue": {
-    "message": "Queue"
+    "message": "Add to playlist"
   },
   "helpHeadline": {
     "message": "Help"

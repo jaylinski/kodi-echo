@@ -1,27 +1,32 @@
 :root {
   --color-primary: #2eb1e7;
   --color-primary-hover: #1598CE;
-  --color-control-button: #444444;
+  --color-control-button: #444;
   --color-text: rgba(255, 255, 255, .8);
   --color-text-progress: rgba(255, 255, 255, .5);
   --color-text-footer: rgba(255, 255, 255, .4);
   --color-background-header: #1e2122;
+  --color-background-footer: #1e2122;
+  --color-background-body: #252627;
   --color-background-progress: #353637;
   --color-background-progress-active: #353637;
-  --color-background-body: #252627;
-  --color-background-footer: #1e2122;
   --color-background-error: #a94442;
   --color-background-sidebar: rgba(255, 255, 255, .9);
+  --color-background-playlist-item: #444;
+  --color-background-playlist-item-hover: #555;
+  --grid-sidebar-width: 44px;
   --spacing-xs: .2rem;
   --spacing-s: .5rem;
   --spacing-m: 1rem;
   --font-size: 120%;
   --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Ubuntu, Helvetica, Arial, sans-serif;
+  --button-letter-spacing: .06rem;
   --progress-height: 2rem;
   --progress-border-size: 4px;
-  --sidebar-width: 44px;
   --nav-link-border-size: 4px;
-  --z-index-sidebar: 10;
+  --playlist-border-size: 4px;
+  --z-index-header: 5;
+  --z-index-logo: 10;
 }
 
 *,
@@ -63,28 +68,46 @@ p, pre {
   margin: 0;
 }
 
-/* Components */
+/* Layout */
 
-.c-header {
-  position: relative;
-  background-color: var(--color-background-header);
+#app {
+  display: grid;
+  grid-template-columns: var(--grid-sidebar-width) 1fr;
+  grid-template-areas:
+    "logo   header"
+    "status status"
+    "nav    main"
+    "footer footer";
+}
+
+/* Components (grid areas) */
+
+.c-logo {
+  grid-area: logo;
   display: flex;
   align-items: center;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, .08)
-}
-
-.c-header__logo {
-  display: flex;
   justify-content: center;
-  min-width: var(--sidebar-width);
-  padding: var(--spacing-s) 0;
+  height: var(--grid-sidebar-width);
+  background-color: var(--color-background-header);
+  z-index: var(--z-index-logo); /* Prevent leakage of `.c-header` box-shadow into logo area. */
 }
-.c-header__logo img {
+.c-logo img {
+  display: block;
   height: 28px;
 }
-.c-header__playing {
+
+.c-header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
   font-size: 90%;
-  padding: var(--spacing-s) var(--spacing-m);
+  padding: 0 var(--spacing-m);
+  background-color: var(--color-background-header);
+  box-shadow: 0 2px 10px rgba(255, 255, 255, .02);
+  overflow: hidden;
+  z-index: var(--z-index-header); /* Make `box-shadow` visible on areas below. */
+}
+.c-header__title {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -92,6 +115,7 @@ p, pre {
 }
 
 .c-loader {
+  grid-area: status;
   height: 2px;
   position: relative;
   overflow: hidden;
@@ -113,6 +137,7 @@ p, pre {
 }
 
 .c-info {
+  grid-area: status;
   background-color: var(--color-background-body);
 }
 .c-info__status {
@@ -129,19 +154,8 @@ p, pre {
   display: inline;
 }
 
-.c-body {
-  display: flex;
-  background-color: var(--color-background-body);
-}
-.c-body__nav {
-  flex-shrink: 0;
-  width: var(--sidebar-width);
-}
-.c-body__main {
-  flex-grow: 1;
-}
-
 .c-nav {
+  grid-area: nav;
   background-color: var(--color-background-sidebar);
 }
 .c-nav__link {
@@ -163,6 +177,14 @@ p, pre {
   display: block;
 }
 
+.c-main {
+  grid-area: main;
+  background-color: var(--color-background-body);
+  overflow-x: hidden; /* This is needed for `text-overflow: ellipsis` properties inside sections. */
+}
+
+/* Components (grid area children) */
+
 .c-section {
   position: relative;
   display: none;
@@ -172,10 +194,6 @@ p, pre {
 }
 .c-section__content {
   padding: var(--spacing-m);
-}
-
-.c-main {
-  flex-grow: 1;
 }
 
 .c-controls {
@@ -238,7 +256,7 @@ p, pre {
   position: relative;
   width: 58px;
 }
-.c-share__more button:focus + * {
+.c-share__more:focus-within .c-share__dropdown {
   display: block;
   position: absolute;
   top: 100%;
@@ -254,7 +272,7 @@ p, pre {
 .c-share__button {
   font-size: .8rem;
   font-weight: 600;
-  letter-spacing: .06rem;
+  letter-spacing: var(--button-letter-spacing);
   width: 100%;
   padding: var(--spacing-s) var(--spacing-m);
   background-color: var(--color-primary);
@@ -299,23 +317,136 @@ p, pre {
   padding-right: var(--spacing-m);
 }
 
-.c-setup {
-  padding: var(--spacing-m);
+.c-playlist {
+  font-size: 80%;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.c-playlist > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.c-playlist--text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.c-playlist__item {
+  position: relative;
+  background-color: var(--color-background-playlist-item);
+  border-left: var(--playlist-border-size) solid transparent;
+  padding: var(--spacing-s) var(--spacing-m) var(--spacing-s) calc(var(--spacing-m) - var(--playlist-border-size));
+  margin-bottom: 2px;
+  transition: background-color .1s;
+}
+.c-playlist__item:hover {
+  background-color: var(--color-background-playlist-item-hover);
+}
+.c-playlist__item--playing {
+  border-left-color: var(--color-primary);
+}
+.c-playlist__item--playing .c-playlist__title {
+  font-weight: bold;
+}
+.c-playlist__item--playing .c-playlist__actions {
+  display: none;
+}
+.c-playlist__title {
+  display: block;
+}
+.c-playlist__subtitle {
+  display: block;
+  font-size: 90%;
+}
+.c-playlist__actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.c-playlist__button {
+  display: block;
+  margin-bottom: 1px;
   background-color: var(--color-background-body);
+  opacity: .4;
+  transition: opacity .1s;
+  cursor: pointer;
 }
-.c-setup p {
-  margin-bottom: .4em;
+.c-playlist__button:hover {
+  opacity: 1;
 }
-.c-setup__headline {
-  margin: 0 0 1rem 0;
+
+.c-devices {
+  font-size: 80%;
+}
+
+.c-form {}
+.c-form .c-form__group:first-child label {
+  margin-top: 0;
+}
+.c-form__group--flex {
+  display: flex;
+}
+.c-form__group--flex > *:first-child {
+  margin-right: var(--spacing-s);
+}
+.c-form__group label {
+  display: block;
+  margin: var(--spacing-s) 0 var(--spacing-xs) 0;
+}
+.c-form__group input {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--color-background-header);
+  padding: var(--spacing-xs) var(--spacing-s);
+}
+.c-form__button {
+  background-color: var(--color-primary);
+  padding: var(--spacing-s) var(--spacing-m);
+  margin-top: var(--spacing-m);
+  width: 100%;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: var(--button-letter-spacing);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color .2s;
+}
+.c-form__button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.c-options {
+  font-size: 80%;
+}
+.c-options table th {
+  font-weight: normal;
+  text-align: left;
+}
+
+.c-switch {
+  position: relative;
+}
+.c-switch input {
+  display: none;
+}
+.c-switch__track {
+  background-color: var(--color-primary);
+  width: 32px;
+  height: 14px;
+  border: 1px solid #018786;
+  border-radius: 7px;
+  opacity: .38;
+  transition: opacity 90ms cubic-bezier(.4,0,.2,1),background-color 90ms cubic-bezier(.4,0,.2,1),border-color 90ms cubic-bezier(.4,0,.2,1);
 }
 
 .c-help {}
 .c-help__headline {
-  margin: 0 0 1rem 0;
+  margin: 0 0 var(--spacing-m) 0;
 }
 
 .c-footer {
+  grid-area: footer;
   font-size: 70%;
   display: flex;
   background-color: var(--color-background-footer);

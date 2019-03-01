@@ -100,21 +100,23 @@ Run `npm start`.
 
 ### Roadmap
 
-* Add more controls (Seek, Queue, Playlist)
+* Add more controls (Seek)
+* Make the replay feature optional
+* Improve display of files (Youtube, Soundcloud, ...) in playlist view
 * Disable play button if website is not supported
 * Add key mappings (enter = share, space = play/pause, q = queue)
   * Support media keys (https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/commands#Media_keys)
-* Consider implementing a "Play this next" feature
 * Get approval from XBMC Foundation for use of logo and name
 * Publish as Firefox Add-on, Chrome Extension and Microsoft Edge Extension
-* Think about moving the options-page to a popup-tab (enables better initial configuration of extension)
-* Make the replay feature optional
+* Add badges for version (SemVer) and npm dependencies (https://github.com/badges/shields)
+* Consider implementing a "Play this next" feature
 * Test critical code
+* Support usage of multiple devices
 
 ## Attributions
 
 The design of this extension is strongly influenced by the 
-awesome Kodi Web Interface [Chorus2](https://github.com/xbmc/chorus2).
+awesome Kodi projects [Chorus2](https://github.com/xbmc/chorus2) and the [Kore](https://github.com/xbmc/Kore).
 
 ## Copyright and license
 

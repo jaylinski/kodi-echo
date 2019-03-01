@@ -5,10 +5,9 @@ export default class Store extends EventTarget {
   constructor({ options }) {
     super();
 
-    this.subscriber = () => null;
     this.options = options;
-    this.kodi = new Kodi(options);
-    this.receiveEvents();
+    this.kodi = new Kodi(this.options.devices[0]);
+    this.sync();
 
     // Default values.
     this.apiConnected = true;
@@ -22,14 +21,27 @@ export default class Store extends EventTarget {
     this.repeat = 'off';
     this.shuffled = false;
     this.route = 'controls';
-    this.playlist = [];
+    this.playlist = {
+      id: 0,
+      items: [],
+    };
 
     // Actions
     this.actions = {
       mute: () => this.kodi.setMute(!this.muted),
-      next: () => this.kodi.setGoTo('next'),
-      pause: () => this.kodi.setPlayPause(),
-      prev: () => this.kodi.setGoTo('previous'),
+      next: () => this.kodi.goTo('next'),
+      pause: () => this.kodi.playPause(),
+      playItem: (position) => this.kodi.goTo(position),
+      prev: () => this.kodi.goTo('previous'),
+      queue: async () => {
+        try {
+          const activeTab = await getActiveTab();
+          await this.kodi.queue(new URL(activeTab.url));
+        } catch (error) {
+          this.commit('apiError', error);
+        }
+      },
+      removeItem: (position) => this.kodi.remove(position),
       repeat: () => this.kodi.setRepeat(),
       share: async () => {
         try {
@@ -40,7 +52,11 @@ export default class Store extends EventTarget {
         }
       },
       shuffle: () => this.kodi.setShuffle(),
-      stop: () => this.kodi.setStop(),
+      stop: () => this.kodi.stop(),
+      updateDevice: async (options) => {
+        this.options.devices[0] = options;
+        await this.options.saveToStorage();
+      },
       volume: (event) => {
         this.commit('volume', event.target.valueAsNumber); // Set new volume instantly in order to avoid glitches.
         this.kodi.setVolume(event.target.valueAsNumber);
@@ -53,7 +69,6 @@ export default class Store extends EventTarget {
    *
    * @param key
    * @param callback
-   * @param source Can be either `html` or `kodi`.
    * @returns {*}
    */
   commit(key, callback) {
@@ -63,15 +78,15 @@ export default class Store extends EventTarget {
       this[key] = callback;
     }
 
-    this.subscriber.call();
+    this.dispatchEvent(new CustomEvent('store.updated'));
 
     return this[key];
   }
 
   /**
-   * Receive events from non-HTML sources.
+   * Sync with Kodi by listening for events.
    */
-  receiveEvents() {
+  sync() {
     this.kodi.addEventListener('api.active', (event) => {
       this.commit('apiActive', event.detail);
     });
@@ -93,16 +108,15 @@ export default class Store extends EventTarget {
       this.commit('shuffled', syncData.playerProps.shuffled);
       this.commit('repeat', syncData.playerProps.repeat);
       this.commit('playing', syncData.playing.item.label !== '' ? syncData.playing.item : false);
-      this.commit('playlist', syncData.playlist.items || []);
+      this.commit('playlist', {
+        id: syncData.playerProps.playlistid,
+        items: syncData.playlist.items || [],
+      });
       this.commit('progress', {
         time: syncData.playerProps.time,
         duration: syncData.playerProps.totaltime,
         percentage: syncData.playerProps.percentage,
       });
     });
-  }
-
-  subscribe(callback) {
-    this.subscriber = callback;
   }
 }

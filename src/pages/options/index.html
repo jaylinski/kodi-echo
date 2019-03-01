@@ -6,31 +6,10 @@
   <script type="module" src="./main.js"></script>
 </head>
 <body>
-  <form>
-    <div class="c-form">
-      <div class="c-form__host">
-        <label for="option_ip">Host/IP</label>
-        <input type="text" id="option_ip" value="" placeholder="192.168.0.99">
-      </div>
-      <div class="c-form-__port">
-        <label for="option_port">Port</label>
-        <input type="number" id="option_port" value="" placeholder="9090">
-      </div>
-    </div>
-    <div>
-      <label for="option_user" data-i18n="optionsUser">User</label>
-      <input type="text" id="option_user" value="" placeholder="User">
-    </div>
-    <div>
-      <label for="option_port" data-i18n="optionsPassword">Password</label>
-      <input type="password" id="option_password" value="" placeholder="Password">
-    </div>
-    <div>
-      <button type="submit">
-        <span data-i18n="optionsSave">Save</span>
-        <span id="option_submit_status"></span>
-      </button>
-    </div>
-  </form>
+  <p>Please use the extension popup for configuration.</p>
+  <details>
+    <summary>Debug information</summary>
+    <pre id="debug"></pre>
+  </details>
 </body>
 </html>

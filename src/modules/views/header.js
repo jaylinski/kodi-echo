@@ -5,8 +5,10 @@ function getTitle(store) {
 }
 
 export default (store) => html`
-  <div class="c-header">
-    <div class="c-header__logo"><img src="/assets/icon-48.png" alt="Kodi Logo" /></div>
-    <div class="c-header__playing" title="${getTitle(store)}">${getTitle(store)}</div>
+  <div class="c-logo">
+    <div><img src="/assets/icon-48.png" alt="Kodi Logo" /></div>
+  </div>
+  <div class="c-header" title="${getTitle(store)}">
+    <div class="c-header__title">${getTitle(store)}</div>
   </div>
 `;

@@ -1,7 +1,6 @@
 import footer from './views/footer.js';
 import header from './views/header.js';
 import main from './views/main.js';
-import setup from './views/setup.js';
 import status from './views/status.js';
 import { getBrowser } from './utils/browser.js';
 import { html, render } from './utils/dom.js';
@@ -14,10 +13,9 @@ export default class View extends EventTarget {
 
     this.root = root;
     this.store = store;
+    this.store.addEventListener('store.updated', () => this.render());
     this.i18n = browser.i18n;
     this.manifest = browser.runtime.getManifest();
-
-    store.subscribe(this.render.bind(this));
 
     this.render();
   }
@@ -34,8 +32,8 @@ export default class View extends EventTarget {
   }
 
   template({ store, i18n, manifest }) {
-    // If no options are set, show the user a link to the options page.
-    if (!store.options.ip) return setup(i18n);
+    // If no device is configured, display the devices page.
+    if (!store.options.devices[0].ip) store.route = 'devices';
 
     return html`
       ${header(store)} ${status(store, i18n)} ${main(store, i18n)} ${footer(store, i18n, manifest)}

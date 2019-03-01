@@ -22,7 +22,7 @@ function apiError(error, i18n) {
 export default (store, i18n) => html`
   <div class="c-loader ${store.apiActive ? 'c-loader--show' : ''}"></div>
   <div class="c-info">
-    ${!store.apiConnected ? noConnection(store.options, i18n) : ''}
+    ${!store.apiConnected ? noConnection(store.options.devices[0], i18n) : ''}
     ${store.apiError ? apiError(store.apiError.message, i18n) : ''}
   </div>
 `;

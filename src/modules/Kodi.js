@@ -8,6 +8,7 @@ export default class Kodi extends EventTarget {
 
     this.api = new WebSocketApi(options);
     this.activePlayerId = 0;
+    this.activePlaylistId = 0;
 
     this.listeners();
 
@@ -32,6 +33,8 @@ export default class Kodi extends EventTarget {
     this.api.listen('Player.OnPlay', () => this.sync());
     this.api.listen('Player.OnPause', () => this.sync());
     this.api.listen('Player.OnStop', () => this.sync());
+    this.api.listen('Playlist.OnAdd', () => this.sync());
+    this.api.listen('Playlist.OnRemove', () => this.sync());
   }
 
   /**
@@ -47,10 +50,11 @@ export default class Kodi extends EventTarget {
       this.activePlayerId,
       ['playlistid', 'shuffled', 'repeat', 'time', 'totaltime', 'percentage', 'speed'],
     ]);
+    this.activePlaylistId = playerProps.playlistid;
     const playing = await this.api.send('Player.GetItem', [this.activePlayerId, []]);
     const playlist = await this.api.send('Playlist.GetItems', [
-      playerProps.playlistid,
-      ['title', 'artist', 'duration'],
+      this.activePlaylistId,
+      ['title', 'artist', 'duration', 'file'],
     ]);
 
     this.dispatchEvent(
@@ -65,9 +69,15 @@ export default class Kodi extends EventTarget {
     );
   }
 
+  /**
+   * @param {URL} url
+   * @returns {Promise<void>}
+   */
   async share(url) {
     const plugin = getPluginByUrl(url);
-    const pluginPath = await plugin.getPluginPath({ url });
+    const file = await plugin.getPluginPath({ url });
+
+    await setLocal({ lastPlayed: file });
 
     try {
       plugin.stopCurrentlyPlayingMedia(); // TODO An interface would be nice (consider adoption of TypeScript).
@@ -75,19 +85,52 @@ export default class Kodi extends EventTarget {
       console.warn(error);
     }
 
-    await this.play(pluginPath);
+    await this.clear();
+    await this.add(file);
+    await this.play();
   }
 
-  async play(file) {
-    await setLocal({ lastPlayed: file });
-    await this.api.send('Playlist.Clear', { playlistid: 1 });
-    await this.api.send('Playlist.Add', { playlistid: 1, item: { file } });
-    await this.api.send('Player.Open', { item: { playlistid: 1, position: 0 } });
+  async queue(url) {
+    const plugin = getPluginByUrl(url);
+    const file = await plugin.getPluginPath({ url });
+
+    await this.add(file);
+  }
+
+  async play(position = 0) {
+    await this.api.send('Player.Open', { item: { playlistid: this.activePlaylistId, position } });
   }
 
   async replay() {
     const file = await getLocal('lastPlayed');
-    await this.play(file.lastPlayed);
+
+    await this.clear();
+    await this.add(file);
+    await this.play();
+  }
+
+  async playPause() {
+    await this.api.send('Player.PlayPause', [this.activePlayerId, 'toggle']);
+  }
+
+  async stop() {
+    await this.api.send('Player.Stop', [this.activePlayerId]);
+  }
+
+  async goTo(to) {
+    await this.api.send('Player.GoTo', [this.activePlayerId, to]);
+  }
+
+  async add(file) {
+    await this.api.send('Playlist.Add', { playlistid: this.activePlaylistId, item: { file } });
+  }
+
+  async remove(position) {
+    await this.api.send('Playlist.Remove', { playlistid: this.activePlaylistId, position });
+  }
+
+  async clear() {
+    await this.api.send('Playlist.Clear', { playlistid: this.activePlaylistId });
   }
 
   async setVolume(volume) {
@@ -96,18 +139,6 @@ export default class Kodi extends EventTarget {
 
   async setMute(mute) {
     await this.api.send('Application.SetMute', { mute });
-  }
-
-  async setPlayPause() {
-    await this.api.send('Player.PlayPause', [this.activePlayerId, 'toggle']);
-  }
-
-  async setStop() {
-    await this.api.send('Player.Stop', [this.activePlayerId]);
-  }
-
-  async setGoTo(type) {
-    await this.api.send('Player.GoTo', [this.activePlayerId, type]);
   }
 
   async setRepeat() {

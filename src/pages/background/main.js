@@ -5,14 +5,14 @@ import { getBrowser, getBrowserInfo } from './../../modules/utils/browser.js';
 const options = new Options();
 
 options.getFormStorage().then(async () => {
-  const kodi = new Kodi(options);
+  const kodi = new Kodi(options.devices[0]);
   const browser = getBrowser();
   const browserInfo = getBrowserInfo();
   const manifest = browser.runtime.getManifest();
 
-  console.debug(browserInfo.name);
-
   kodi.api.listen('Player.OnStop', () => {
+    if (!options.replayNotifications) return;
+
     const notificationOptions = {
       type: 'basic',
       title: browser.i18n.getMessage('extensionName'),
@@ -62,9 +62,9 @@ options.getFormStorage().then(async () => {
     parentId: 'kodi',
     title: browser.i18n.getMessage('menuQueue'),
     contexts: ['link'],
-    enabled: false, // TODO Implement.
   });
   browser.contextMenus.onClicked.addListener((event) => {
     if (event.menuItemId === 'kodi-play') kodi.share(new URL(event.linkUrl));
+    if (event.menuItemId === 'kodi-queue') kodi.queue(new URL(event.linkUrl));
   });
 });

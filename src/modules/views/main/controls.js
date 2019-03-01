@@ -82,7 +82,7 @@ export default (store, i18n) => {
           <button class="c-share__button">⁝</button>
           <ul class="c-share__dropdown">
             <li>
-              <button id="share" class="c-share__button c-share__button--dropdown">
+              <button @click="${store.actions.queue}" id="share" class="c-share__button c-share__button--dropdown">
                 ${i18n.getMessage('mainControlsQueue')}
               </button>
             </li>
