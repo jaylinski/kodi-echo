@@ -32,6 +32,7 @@ export default class Kodi extends EventTarget {
     this.api.listen('Player.OnPropertyChanged', () => this.sync());
     this.api.listen('Player.OnPlay', () => this.sync());
     this.api.listen('Player.OnPause', () => this.sync());
+    this.api.listen('Player.OnSeek', () => this.sync());
     this.api.listen('Player.OnStop', () => this.sync());
     this.api.listen('Playlist.OnAdd', () => this.sync());
     this.api.listen('Playlist.OnRemove', () => this.sync());
@@ -105,7 +106,7 @@ export default class Kodi extends EventTarget {
     const file = await getLocal('lastPlayed');
 
     await this.clear();
-    await this.add(file);
+    await this.add(file.lastPlayed);
     await this.play();
   }
 
@@ -119,6 +120,10 @@ export default class Kodi extends EventTarget {
 
   async goTo(to) {
     await this.api.send('Player.GoTo', [this.activePlayerId, to]);
+  }
+
+  async seek(percentage) {
+    await this.api.send('Player.seek', [this.activePlayerId, percentage]);
   }
 
   async add(file) {

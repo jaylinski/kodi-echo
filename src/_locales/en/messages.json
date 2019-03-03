@@ -59,6 +59,9 @@
   "mainPlaylistEmpty": {
     "message": "You can add items to the playlist by using the queue button."
   },
+  "mainPlaylistNoTitle": {
+    "message": "No title found"
+  },
   "footerHelp": {
     "message": "Help"
   },
@@ -80,11 +83,26 @@
   "optionsReplayNotifications": {
     "message": "Replay notification"
   },
+  "optionsReloadInfo": {
+    "message": "You may have to reload the extension if you changed a setting:"
+  },
+  "optionsReloadButton": {
+    "message": "Reload extension"
+  },
   "menuPlay": {
     "message": "► Play"
   },
   "menuQueue": {
     "message": "Add to playlist"
+  },
+  "backgroundReplayNotification": {
+    "message": "Do you want to replay?"
+  },
+  "backgroundReplayNotificationHide": {
+    "message": "Don't show again"
+  },
+  "backgroundReplayNotificationAction": {
+    "message": "► Replay now"
   },
   "helpHeadline": {
     "message": "Help"

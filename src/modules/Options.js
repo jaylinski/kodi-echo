@@ -13,7 +13,7 @@ export default class Options {
         password: '',
       },
     ];
-    this.replayNotifications = false;
+    this.replayNotification = false;
   }
 
   async getFormStorage() {
@@ -25,6 +25,7 @@ export default class Options {
       this.devices[0].port = options.devices[0].port || WEBSOCKET_DEFAULT_PORT;
       this.devices[0].user = options.devices[0].user || '';
       this.devices[0].password = options.devices[0].password || '';
+      this.replayNotification = options.replayNotification;
     } catch (e) {
       // There are no options set yet.
       // Since we provide default `null` values this is okay.
@@ -32,11 +33,10 @@ export default class Options {
   }
 
   async saveToStorage() {
-    console.debug(this.devices);
     await setLocal({
       options: {
         devices: this.devices,
-        replayNotifications: this.replayNotifications,
+        replayNotification: this.replayNotification,
       },
     });
   }

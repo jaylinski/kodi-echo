@@ -9,7 +9,8 @@
   --color-background-footer: #1e2122;
   --color-background-body: #252627;
   --color-background-progress: #353637;
-  --color-background-progress-active: #353637;
+  --color-background-progress-active: rgba(255, 255, 255, .04);
+  --color-background-progress-active-hover: rgba(255, 255, 255, .08);
   --color-background-error: #a94442;
   --color-background-sidebar: rgba(255, 255, 255, .9);
   --color-background-playlist-item: #444;
@@ -62,6 +63,10 @@ button {
 button::-moz-focus-inner {
   padding: 0;
   border-style: none;
+}
+
+hr {
+  border-color: var(--color-background-progress);
 }
 
 p, pre {
@@ -295,19 +300,23 @@ p, pre {
 .c-progress {
   position: relative;
   width: 100%;
-  height: var(--progress-height);
   background-color: var(--color-background-progress);
+  cursor: pointer;
+}
+.c-progress:hover .c-progress__bar {
+  background-color: var(--color-background-progress-active-hover);
 }
 .c-progress__bar {
   position: absolute;
-  height: var(--progress-height);
   top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
+  background-color: var(--color-background-progress-active);
   border-bottom: var(--progress-border-size) solid var(--color-primary);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform .9s;
+  transition: background-color .1s, transform .9s;
 }
 .c-progress__timing {
   color: var(--color-text-progress);
@@ -315,6 +324,7 @@ p, pre {
   text-align: right;
   line-height: var(--progress-height);
   padding-right: var(--spacing-m);
+  user-select: none;
 }
 
 .c-playlist {
@@ -419,25 +429,35 @@ p, pre {
 .c-options {
   font-size: 80%;
 }
+.c-options table {
+  border: none;
+  margin-bottom: var(--spacing-m);
+}
+.c-options table th,
+.c-options table td {
+  padding: 0;
+}
 .c-options table th {
   font-weight: normal;
   text-align: left;
+  padding-right: var(--spacing-s);
 }
-
-.c-switch {
-  position: relative;
-}
-.c-switch input {
-  display: none;
-}
-.c-switch__track {
+.c-options__button {
   background-color: var(--color-primary);
-  width: 32px;
-  height: 14px;
-  border: 1px solid #018786;
-  border-radius: 7px;
-  opacity: .38;
-  transition: opacity 90ms cubic-bezier(.4,0,.2,1),background-color 90ms cubic-bezier(.4,0,.2,1),border-color 90ms cubic-bezier(.4,0,.2,1);
+  padding: var(--spacing-s) var(--spacing-m);
+  margin-top: var(--spacing-m);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: var(--button-letter-spacing);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color .2s;
+}
+.c-options__button:hover {
+  background-color: var(--color-primary-hover);
+}
+.c-options__notice {
+  margin-top: var(--spacing-m);
 }
 
 .c-help {}

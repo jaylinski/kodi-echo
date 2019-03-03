@@ -38,8 +38,9 @@ function calculateProgress(store) {
 function progress(store) {
   calculateProgress(store);
   const progress = store.progress;
+
   return html`
-    <div class="c-progress">
+    <div @click="${store.actions.seek}" class="c-progress">
       <div class="c-progress__bar"></div>
       <div class="c-progress__timing">
         <span class="c-progress__timing-current">

@@ -1,6 +1,9 @@
-![Kodi logo](https://github.com/xbmc/xbmc/raw/master/addons/webinterface.default/icon-128.png)
-
 # [Kodi](https://github.com/xbmc/xbmc) Echo &horbar; Browser Extension
+
+<img align="right" src="https://github.com/xbmc/xbmc/raw/master/addons/webinterface.default/icon-128.png" alt="Kodi logo">
+
+![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/jaylinski/kodi-echo.svg)
+![npm dependencies](https://img.shields.io/david/jaylinski/kodi-echo.svg)
 
 Kodi Echo lets you share your favorite content with Kodi (XBMC).
 
@@ -16,12 +19,17 @@ Check out the [comparison between Kodi Echo and Play to Kodi](#comparison-with-p
 * Lets you easily share content from websites with Kodi.
 * Uses as few permissions as possible & respects your privacy.
 * Does not break websites by avoiding to inject scripts.
-* Lets you replay shared content.
 * Built with the latest technologies the web offers.
 
-<!-- TODO Add screenshots (popup, context menu) -->
+<p align="center">
+<img align="top" width="302" src="screenshots/screenshot_1_controls.png" alt="Screenshot controls">
+<img align="top" width="302" src="screenshots/screenshot_2_playlist.png" alt="Screenshot playlist">
+<img align="top" width="280" src="screenshots/screenshot_3_device.png" alt="Screenshot device">
+</div>
 
 ## Installation
+
+> This extension is currently not available on any store and has to be built manually.
 
 * Mozilla Firefox
 * Google Chrome
@@ -68,11 +76,13 @@ It only sends requests to your configured Kodi host.
 
 #### Supported websites
 
-| Website            | Kodi Plugin                                                        |
-| ------------------ | ------------------------------------------------------------------ |
-| www.youtube.com    | [plugin.video.youtube](http://kodi.wiki/view/Add-on:YouTube)       |
-| www.soundcloud.com | [plugin.audio.soundcloud](http://kodi.wiki/view/Add-on:SoundCloud) |
-| www.mixcloud.com   | [plugin.audio.mixcloud](http://kodi.wiki/view/Add-on:MixCloud)     |
+| Website            | Kodi Plugin                                                         |
+| ------------------ | ------------------------------------------------------------------- |
+| mixcloud.com       | [plugin.audio.mixcloud](https://kodi.wiki/view/Add-on:MixCloud)     |
+| soundcloud.com     | [plugin.audio.soundcloud](https://kodi.wiki/view/Add-on:SoundCloud) |
+| twitch.tv          | [plugin.video.twitch](https://kodi.wiki/view/Add-on:TwitchTV)       |
+| vimeo.com          | [plugin.video.vimeo](https://kodi.wiki/view/Add-on:Vimeo)           |
+| youtube.com        | [plugin.video.youtube](https://kodi.wiki/view/Add-on:YouTube)       |
 
 #### Comparison with Play to Kodi
 
@@ -80,10 +90,11 @@ It only sends requests to your configured Kodi host.
 | ---------------------- | ---------- | ------------ |
 | Avoids content scripts | ✅          | ❎           |
 | Adds a context menu    | ✅          | ✅           |
-| Instant replay         | ✅          | ❎           |
+| Replay notifications   | ✅          | ❎           |
 | Key mappings           | ❎          | ✅           |
 | Favorites              | ❎          | ✅           |
-| Number of plugins      | 3          | \> 30        |
+| Multiple devices       | ❎          | ✅           |
+| Number of plugins      | 5          | \> 30        |
 | Languages (i18n)       | 2 (en, de) | 1 (en)       |
 | Communication          | WebSockets | HTTP         |
 | Uses standard WebExtensions API | ✅ | ❎           |
@@ -100,15 +111,13 @@ Run `npm start`.
 
 ### Roadmap
 
-* Add more controls (Seek)
-* Make the replay feature optional
 * Improve display of files (Youtube, Soundcloud, ...) in playlist view
 * Disable play button if website is not supported
 * Add key mappings (enter = share, space = play/pause, q = queue)
-  * Support media keys (https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/commands#Media_keys)
+  * [Support media keys](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/commands#Media_keys)
 * Get approval from XBMC Foundation for use of logo and name
 * Publish as Firefox Add-on, Chrome Extension and Microsoft Edge Extension
-* Add badges for version (SemVer) and npm dependencies (https://github.com/badges/shields)
+  * Add badges for for Chrome and Firefox addons (https://github.com/badges/shields)
 * Consider implementing a "Play this next" feature
 * Test critical code
 * Support usage of multiple devices
@@ -116,7 +125,7 @@ Run `npm start`.
 ## Attributions
 
 The design of this extension is strongly influenced by the 
-awesome Kodi projects [Chorus2](https://github.com/xbmc/chorus2) and the [Kore](https://github.com/xbmc/Kore).
+awesome Kodi projects [Chorus2](https://github.com/xbmc/chorus2) and [Kore](https://github.com/xbmc/Kore).
 
 ## Copyright and license
 

@@ -11,20 +11,23 @@ options.getFormStorage().then(async () => {
   const manifest = browser.runtime.getManifest();
 
   kodi.api.listen('Player.OnStop', () => {
-    if (!options.replayNotifications) return;
+    if (!options.replayNotification) return;
 
     const notificationOptions = {
       type: 'basic',
       title: browser.i18n.getMessage('extensionName'),
-      message: 'Do you want to replay?',
+      message: browser.i18n.getMessage('backgroundReplayNotification'),
       iconUrl: browser.extension.getURL(manifest.icons[128]),
     };
 
     // Buttons are only supported by Chrome.
     // Firefox apparently doesn't support `getBrowserInfo()` on background pages and returns `undefined`.
-    // So `null` should be everything but Firefox. TODO Replace this hack.
+    // So `null` should be everything but Firefox. TODO Replace this hack with something better.
     if (browserInfo.name === null) {
-      notificationOptions.buttons = [{ title: `Don't show again` }, { title: '► Replay now' }];
+      notificationOptions.buttons = [
+        { title: browser.i18n.getMessage('backgroundReplayNotificationHide') },
+        { title: browser.i18n.getMessage('backgroundReplayNotificationAction') },
+      ];
     }
 
     browser.notifications.create('replay', notificationOptions);
@@ -37,7 +40,8 @@ options.getFormStorage().then(async () => {
     });
     browser.notifications.onButtonClicked.addListener((id, index) => {
       if (index === 0) {
-        // TODO Implement "Don't show again".
+        options.replayNotification = false;
+        options.saveToStorage();
       }
       if (index === 1) kodi.replay();
       browser.notifications.clear('replay');

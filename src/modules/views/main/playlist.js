@@ -4,8 +4,8 @@ function isPlaying(store, item) {
   return 'id' in item && 'id' in store.playing && store.playing.id === item.id;
 }
 
-function getTitle(item) {
-  return item.title || item.label;
+function getTitle(i18n, item) {
+  return item.title || item.label || i18n.getMessage('mainPlaylistNoTitle');
 }
 
 function getSubTitle(item) {
@@ -30,8 +30,8 @@ export default (store, i18n) => {
           (item, index) =>
             html`
               <li class="c-playlist__item ${isPlaying(store, item) ? 'c-playlist__item--playing' : ''}">
-                <span class="c-playlist__title c-playlist--text-ellipsis" title="${getTitle(item)}"
-                  >${getTitle(item)}</span
+                <span class="c-playlist__title c-playlist--text-ellipsis" title="${getTitle(i18n, item)}"
+                  >${getTitle(i18n, item)}</span
                 >
                 <span class="c-playlist__subtitle c-playlist--text-ellipsis" title="${getSubTitle(item)}"
                   >${getSubTitle(item)}</span

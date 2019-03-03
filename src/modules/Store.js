@@ -43,6 +43,10 @@ export default class Store extends EventTarget {
       },
       removeItem: (position) => this.kodi.remove(position),
       repeat: () => this.kodi.setRepeat(),
+      seek: (event) => {
+        const percentage = Math.round((event.layerX / event.currentTarget.offsetWidth) * 100);
+        this.kodi.seek(percentage);
+      },
       share: async () => {
         try {
           const activeTab = await getActiveTab();
@@ -55,6 +59,10 @@ export default class Store extends EventTarget {
       stop: () => this.kodi.stop(),
       updateDevice: async (options) => {
         this.options.devices[0] = options;
+        await this.options.saveToStorage();
+      },
+      updateOptions: async (event) => {
+        this.options[event.currentTarget.dataset.option] = event.currentTarget.checked;
         await this.options.saveToStorage();
       },
       volume: (event) => {

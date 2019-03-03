@@ -8,6 +8,11 @@ class Soundcloud extends WebPlugin {
     this.domains = ['(.*)(.?)soundcloud.com'];
   }
 
+  async getPluginPath() {
+    const audioId = await this.getAudioId();
+    return this.template(audioId);
+  }
+
   template(audioId) {
     return `plugin://plugin.audio.soundcloud/play/?audio_id=${audioId}`;
   }
@@ -18,11 +23,6 @@ class Soundcloud extends WebPlugin {
     );
 
     return result[0].substr(result[0].lastIndexOf(':') + 1);
-  }
-
-  async getPluginPath() {
-    const audioId = await this.getAudioId();
-    return this.template(audioId);
   }
 }
 

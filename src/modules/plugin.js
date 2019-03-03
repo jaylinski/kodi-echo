@@ -1,8 +1,10 @@
 import Mixcloud from './plugins/Mixcloud.js';
 import Soundcloud from './plugins/Soundcloud.js';
+import Twitch from './plugins/Twitch.js';
+import Vimeo from './plugins/Vimeo.js';
 import Youtube from './plugins/Youtube.js';
 
-const plugins = [new Mixcloud(), new Soundcloud(), new Youtube()];
+const plugins = [new Mixcloud(), new Soundcloud(), new Twitch(), new Vimeo(), new Youtube()];
 
 function PluginException(message) {
   this.message = message;

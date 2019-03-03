@@ -59,6 +59,9 @@
   "mainPlaylistEmpty": {
     "message": "Mit der 'Zur Wiedergabeliste hinzufügen'-Schaltfläche kannst Elemente in die Playlist einfügen."
   },
+  "mainPlaylistNoTitle": {
+    "message": "Kein Titel vorhanden"
+  },
   "footerHelp": {
     "message": "Hilfe"
   },
@@ -80,11 +83,26 @@
   "optionsReplayNotifications": {
     "message": "Wiederholungsbenachrichtigung"
   },
+  "optionsReloadInfo": {
+    "message": "Es kann sein, dass du die Extension neu laden musst, wenn du Einstellungen geändert hast:"
+  },
+  "optionsReloadButton": {
+    "message": "Extension neu laden"
+  },
   "menuPlay": {
     "message": "► Abspielen"
   },
   "menuQueue": {
     "message": "Zur Wiedergabeliste hinzufügen"
+  },
+  "backgroundReplayNotification": {
+    "message": "Erneut abspielen?"
+  },
+  "backgroundReplayNotificationHide": {
+    "message": "Nicht mehr anzeigen"
+  },
+  "backgroundReplayNotificationAction": {
+    "message": "► Erneut abspielen"
   },
   "helpHeadline": {
     "message": "Hilfe"
