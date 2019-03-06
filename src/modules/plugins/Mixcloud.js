@@ -19,7 +19,7 @@ class Mixcloud extends WebPlugin {
   }
 
   getAudioId(url) {
-    return url.href.match('(https|http)://(www.)?mixcloud.com(/[^_&#?]+/[^_&#?]+)')[3];
+    return url.pathname;
   }
 }
 

@@ -8,14 +8,6 @@ class Youtube extends WebPlugin {
     this.domains = ['(.*)(.?)youtube.com'];
   }
 
-  template(videoId) {
-    return `plugin://plugin.video.youtube/play/?video_id=${videoId}`;
-  }
-
-  getVideoId(url) {
-    return url.searchParams.get('v');
-  }
-
   async getPluginPath({ url }) {
     return this.template(this.getVideoId(url));
   }
@@ -24,6 +16,14 @@ class Youtube extends WebPlugin {
     await executeScriptInActiveTab(
       `try { document.querySelector('#player-container .playing-mode video').click() } catch (e) {}`
     );
+  }
+
+  template(videoId) {
+    return `plugin://plugin.video.youtube/play/?video_id=${videoId}`;
+  }
+
+  getVideoId(url) {
+    return url.searchParams.get('v');
   }
 }
 
