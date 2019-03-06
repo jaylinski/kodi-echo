@@ -42,7 +42,10 @@ export default class Store extends EventTarget {
         }
       },
       removeItem: (position) => this.kodi.remove(position),
-      repeat: () => this.kodi.setRepeat(),
+      repeat: async () => {
+        await this.kodi.setRepeat();
+        await this.kodi.sync();
+      },
       seek: (event) => {
         const percentage = Math.round((event.layerX / event.currentTarget.offsetWidth) * 100);
         this.kodi.seek(percentage);
@@ -55,7 +58,10 @@ export default class Store extends EventTarget {
           this.commit('apiError', error);
         }
       },
-      shuffle: () => this.kodi.setShuffle(),
+      shuffle: async () => {
+        await this.kodi.setShuffle();
+        await this.kodi.sync();
+      },
       stop: () => this.kodi.stop(),
       updateDevice: async (options) => {
         this.options.devices[0] = options;
