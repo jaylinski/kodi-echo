@@ -1,7 +1,7 @@
 import { html } from './../../utils/dom.js';
 
 function isPlaying(store, item) {
-  return 'id' in item && 'id' in store.playing && store.playing.id === item.id;
+  return 'id' in item && store.playing && 'id' in store.playing && store.playing.id === item.id;
 }
 
 function getTitle(i18n, item) {
