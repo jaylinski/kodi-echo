@@ -3,22 +3,23 @@ import { getLocal, setLocal } from './utils/storage.js';
 import { getPluginByUrl } from './plugin.js';
 
 export default class Kodi extends EventTarget {
-  constructor(options) {
+  constructor() {
     super();
 
-    this.api = new WebSocketApi(options);
+    this.api = new WebSocketApi();
     this.activePlayerId = 0;
     this.activePlaylistId = 0;
 
     this.listeners();
+  }
 
-    this.api.connect().then(async () => {
-      await this.sync();
-    });
+  async connect(options) {
+    await this.api.connect(options);
+    await this.sync();
   }
 
   listeners() {
-    // Listen for events about connectivity.
+    // Listen for connectivity events.
     this.api.addEventListener('api.connected', (event) => {
       this.dispatchEvent(new CustomEvent('api.connected', { detail: event.detail }));
     });
@@ -32,6 +33,7 @@ export default class Kodi extends EventTarget {
     this.api.listen('Player.OnPropertyChanged', () => this.sync());
     this.api.listen('Player.OnPlay', () => this.sync());
     this.api.listen('Player.OnPause', () => this.sync());
+    this.api.listen('Player.OnResume', () => this.sync());
     this.api.listen('Player.OnSeek', () => this.sync());
     this.api.listen('Player.OnStop', () => this.sync());
     this.api.listen('Playlist.OnAdd', () => this.sync());
@@ -81,7 +83,7 @@ export default class Kodi extends EventTarget {
     await setLocal({ lastPlayed: file });
 
     try {
-      plugin.stopCurrentlyPlayingMedia(); // TODO An interface would be nice (consider adoption of TypeScript).
+      plugin.stopCurrentlyPlayingMedia(); // TODO An interface would be nice (would TypeScript help?).
     } catch (error) {
       console.warn(error);
     }

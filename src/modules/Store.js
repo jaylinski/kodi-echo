@@ -1,12 +1,14 @@
 import Kodi from './Kodi.js';
 import { getActiveTab } from './utils/tabs.js';
+import { requestPermissions } from './utils/permissions.js';
 
 export default class Store extends EventTarget {
   constructor({ options }) {
     super();
 
     this.options = options;
-    this.kodi = new Kodi(this.options.devices[0]);
+    this.kodi = new Kodi();
+    this.kodi.connect(this.options.devices[0]);
     this.sync();
 
     // Default values.
@@ -68,8 +70,22 @@ export default class Store extends EventTarget {
         await this.options.saveToStorage();
       },
       updateOptions: async (event) => {
-        this.options[event.currentTarget.dataset.option] = event.currentTarget.checked;
+        const option = event.target.dataset.option;
+        this.options[option] = event.target.checked;
+        this.commit('options', this.options); // Make sure that the DOM will be re-rendered.
+
+        if (option === 'replayNotification') {
+          try {
+            const permissionGranted = await requestPermissions({ permissions: ['notifications'] });
+            if (!permissionGranted) this.options[option] = false;
+          } catch (error) {
+            this.options[option] = false;
+            console.error(error);
+          }
+        }
+
         await this.options.saveToStorage();
+        this.commit('options', this.options);
       },
       volume: (event) => {
         this.commit('volume', event.target.valueAsNumber); // Set new volume instantly in order to avoid glitches.

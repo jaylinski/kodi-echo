@@ -37,11 +37,12 @@ export default (store, i18n) => {
             <input type="number" id="option_port" value="${device.port}" placeholder="9090" />
           </div>
         </div>
-        <div class="c-form__group">
+        <!-- User and password are only needed for HTTP communication. -->
+        <div class="c-form__group hidden">
           <label for="option_user" data-i18n="optionsUser">${i18n.getMessage('optionsUser')}</label>
           <input type="text" id="option_user" value="${device.user}" placeholder="${i18n.getMessage('optionsUser')}" />
         </div>
-        <div class="c-form__group">
+        <div class="c-form__group hidden">
           <label for="option_password" data-i18n="optionsPassword">${i18n.getMessage('optionsPassword')}</label>
           <input
             type="password"

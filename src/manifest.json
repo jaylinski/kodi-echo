@@ -1,10 +1,12 @@
 {
   "manifest_version": 2,
   "name": "Kodi Echo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "__MSG_extensionDescription__",
   "homepage_url": "https://github.com/jaylinski/kodi-echo",
-  "permissions": ["activeTab", "contextMenus", "menus", "storage", "notifications", "background"],
+  "content_security_policy": "default-src 'self'; connect-src ws:; style-src 'self' 'unsafe-inline'",
+  "permissions": ["activeTab", "contextMenus", "menus", "storage"],
+  "optional_permissions": ["notifications"],
   "default_locale": "en",
   "icons": {
     "48": "assets/icon-48.png",
@@ -18,8 +20,7 @@
     "default_popup": "pages/popup/index.html"
   },
   "options_ui": {
-    "page": "pages/options/index.html",
-    "browser_style": true
+    "page": "pages/options/index.html"
   },
   "background": {
     "page": "pages/background/index.html",

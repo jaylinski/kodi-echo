@@ -13,15 +13,18 @@ export default (store, i18n) => {
           <tr>
             <th>
               <label for="replay_notification">${i18n.getMessage('optionsReplayNotifications')}</label>
+              <small>${i18n.getMessage('optionsExperimental')}</small>
             </th>
             <td>
-              <!-- TODO Use a more visually appealing on-off switch. (https://material.angular.io/components/slide-toggle/overview) -->
+              <!-- TODO Use a more visually appealing on-off switch:
+                   https://material.angular.io/components/slide-toggle/overview -->
               <input
                 @change="${store.actions.updateOptions}"
                 type="checkbox"
                 id="replay_notification"
                 data-option="replayNotification"
                 role="switch"
+                .checked=${store.options.replayNotification}
                 ?checked=${store.options.replayNotification}
                 aria-checked="${store.options.replayNotification ? 'true' : 'false'}"
               />

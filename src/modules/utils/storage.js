@@ -1,7 +1,6 @@
 import { getBrowser, getBrowserInfo } from './browser.js';
 
 const browser = getBrowser();
-const browserInfo = getBrowserInfo();
 
 /**
  * Get an item from the local storage.
@@ -13,6 +12,8 @@ const browserInfo = getBrowserInfo();
  * @returns {Promise}
  */
 async function getLocal(keys) {
+  const browserInfo = await getBrowserInfo();
+
   if (browserInfo.name !== 'Firefox') {
     return new Promise((resolve, reject) => {
       browser.storage.local.get(keys, (result) => {
@@ -35,6 +36,8 @@ async function getLocal(keys) {
  * @returns {Promise}
  */
 async function setLocal(keys) {
+  const browserInfo = await getBrowserInfo();
+
   if (browserInfo.name !== 'Firefox') {
     return new Promise((resolve, reject) => {
       browser.storage.local.set(keys, (result) => {

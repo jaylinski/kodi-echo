@@ -1,7 +1,6 @@
 import { getBrowser, getBrowserInfo } from './browser.js';
 
 const browser = getBrowser();
-const browserInfo = getBrowserInfo();
 
 /**
  * Execute a script in a tab.
@@ -13,8 +12,10 @@ const browserInfo = getBrowserInfo();
  * @returns {Promise}
  */
 async function executeScriptTabs(details) {
+  const browserInfo = await getBrowserInfo();
+
   if (browserInfo.name !== 'Firefox') {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       browser.tabs.executeScript(details, (result) => {
         resolve(result);
       });
@@ -34,8 +35,10 @@ async function executeScriptTabs(details) {
  * @returns {Promise}
  */
 async function queryTabs(queryInfo) {
+  const browserInfo = await getBrowserInfo();
+
   if (browserInfo.name !== 'Firefox') {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       browser.tabs.query(queryInfo, (tabs) => {
         resolve(tabs);
       });

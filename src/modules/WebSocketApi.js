@@ -1,16 +1,19 @@
 const JSON_RPC_VERSION = '2.0';
 
 export default class WebSocketApi extends EventTarget {
-  constructor(options) {
+  constructor() {
     super();
 
-    this.auth = options.user ? `${options.user}:${options.password}@` : false;
-    this.host = `${options.ip}:${options.port}`;
     this.apid = 100;
+    this.socket = {};
   }
 
-  async connect() {
-    this.socket = new WebSocket(`ws://${this.auth || ''}${this.host}/jsonrpc`);
+  async connect(options) {
+    const auth = options.user ? `${options.user}:${options.password}@` : false;
+    const host = `${options.ip}:${options.port}`;
+
+    this.closeExistingConnection();
+    this.socket = new WebSocket(`ws://${auth || ''}${host}/jsonrpc`);
     this.setActive(true);
 
     this.socket.onmessage = (event) => {
@@ -41,6 +44,15 @@ export default class WebSocketApi extends EventTarget {
         reject(new Error(event.type));
       };
     });
+  }
+
+  /**
+   * Close existing connection.
+   *
+   * Calling this function prevents multiple open WebSocket connections.
+   */
+  closeExistingConnection() {
+    if ('close' in this.socket) this.socket.close();
   }
 
   /**
@@ -101,8 +113,8 @@ export default class WebSocketApi extends EventTarget {
    * This is a convenience method. By using this method instead of `addEventListener()`
    * we don't have to handle the JSON nesting from Kodi responses.
    *
-   * @param method
-   * @param callback
+   * @param {string} method
+   * @param {function} callback
    */
   listen(method, callback) {
     this.addEventListener(method, (event) => callback(event.detail.params.data));
