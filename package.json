@@ -13,7 +13,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "onchange \"./*(src)/**/*\" -- npm run watch:tasks",
+    "start": "onchange --kill \"./*(src)/**/*\" -- npm run watch:tasks",
     "prebuild": "npm run clean",
     "build": "node ./scripts/build.js",
     "clean:packages": "rm -rf ./web-ext-artifacts/",

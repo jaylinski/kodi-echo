@@ -57,7 +57,7 @@
     "message": "Add to playlist"
   },
   "mainPlaylistEmpty": {
-    "message": "You can add items to the playlist by using the queue button."
+    "message": "You can add items to the playlist by using the “Add to playlist” button."
   },
   "mainPlaylistNoTitle": {
     "message": "No title found"
@@ -83,11 +83,14 @@
   "optionsReplayNotifications": {
     "message": "Replay notification"
   },
-  "optionsReloadInfo": {
+  "optionsExperimental": {
     "message": "You may have to reload the extension if you changed a setting:"
   },
   "optionsReloadButton": {
     "message": "Reload extension"
+  },
+  "optionsFirefoxBug": {
+    "message": "Experimental"
   },
   "menuPlay": {
     "message": "► Play"

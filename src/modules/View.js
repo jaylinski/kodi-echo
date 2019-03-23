@@ -28,7 +28,6 @@ export default class View extends EventTarget {
     });
 
     render(dom, this.root);
-    document.dispatchEvent(new CustomEvent('render.after'));
   }
 
   template({ store, i18n, manifest }) {

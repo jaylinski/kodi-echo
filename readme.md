@@ -22,9 +22,9 @@ Check out the [comparison between Kodi Echo and Play to Kodi](#comparison-with-p
 * Built with the latest technologies the web offers.
 
 <p align="center">
-<img align="top" width="302" src="screenshots/screenshot_1_controls.png" alt="Screenshot controls">
-<img align="top" width="302" src="screenshots/screenshot_2_playlist.png" alt="Screenshot playlist">
-<img align="top" width="280" src="screenshots/screenshot_3_device.png" alt="Screenshot device">
+<img align="top" width="297" src="screenshots/screenshot_1_controls.png" alt="Screenshot controls">
+<img align="top" width="298" src="screenshots/screenshot_2_playlist.png" alt="Screenshot playlist">
+<img align="top" width="275" src="screenshots/screenshot_3_device.png" alt="Screenshot device">
 </div>
 
 ## Installation
@@ -43,11 +43,9 @@ Check out the [comparison between Kodi Echo and Play to Kodi](#comparison-with-p
 
 Visit Kodi &rarr; Settings &rarr; Services &rarr; Control.
 
-* Enable "Allow control of Kodi via HTTP"
-* Enable "Allow programs on this system to control Kodi"
-* Enable "Allow programs on other systems to control Kodi"
+* Enable "Allow remote control from applications on other systems"
 
-> For security reasons you should set a username and password to prevent unauthorized access!
+> For security reasons Kodi should be run inside a private and trusted network!
 
 ## Permissions
 
@@ -59,10 +57,13 @@ This extension requires the permission
   This allows the extension to save your settings, like your Kodi IP and Kodi credentials.
 * to **add menu entries** to your context menu   
   This allows the extension to show you controls in your context menu.
+  
+### Optional permissions
+
+In order to allow the extension to show you a "Replay" dialog if a media item finished playing,
+it requires the permission
+
 * to **send you notifications**   
-  This allows the extension to show you a "Replay" dialog if a media item finished playing.
-* to **execute a script in the background**   
-  This allows the extension to keep connected to Kodi and to send you notifications if the player stops.
 
 For more information on permissions, visit [developer.mozilla.org](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/permissions).
 
@@ -119,6 +120,7 @@ Run `npm start`.
 * Publish as Firefox Add-on, Chrome Extension and Microsoft Edge Extension
   * Add badges for for Chrome and Firefox addons (https://github.com/badges/shields)
 * Consider implementing a "Play this next" feature
+* Get rid of `unsafe-inline` in content security policy
 * Test critical code
 * Support usage of multiple devices
 

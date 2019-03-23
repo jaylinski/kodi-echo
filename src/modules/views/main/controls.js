@@ -64,13 +64,6 @@ function progress(store) {
 }
 
 export default (store, i18n) => {
-  const renderAfterHandler = () => {
-    const vol = document.querySelector('input[type=range]');
-    vol.value = store.volume;
-    document.removeEventListener('render.after', renderAfterHandler);
-  };
-  document.addEventListener('render.after', renderAfterHandler);
-
   return html`
     <div class="c-section__content">
       <ul class="c-share">
@@ -176,6 +169,7 @@ export default (store, i18n) => {
             type="range"
             min="0"
             max="100"
+            .value="${store.volume}"
             value="${store.volume}"
             title="${i18n.getMessage('mainControlsVolume')}"
           />

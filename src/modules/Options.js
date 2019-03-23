@@ -1,6 +1,8 @@
+import { getBrowser } from './utils/browser.js';
 import { getLocal, setLocal } from './utils/storage.js';
 
 const WEBSOCKET_DEFAULT_PORT = 9090;
+const browser = getBrowser();
 
 export default class Options {
   constructor() {
@@ -13,7 +15,7 @@ export default class Options {
         password: '',
       },
     ];
-    this.replayNotification = false;
+    this.replayNotification = false; // Opt-in (requires optional permission)
   }
 
   async getFormStorage() {
@@ -39,5 +41,7 @@ export default class Options {
         replayNotification: this.replayNotification,
       },
     });
+
+    browser.runtime.sendMessage({ message: 'optionsChanged' });
   }
 }

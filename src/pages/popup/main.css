@@ -73,6 +73,12 @@ p, pre {
   margin: 0;
 }
 
+/* Utils */
+
+.hidden {
+  display: none;
+}
+
 /* Layout */
 
 #app {
@@ -441,6 +447,12 @@ p, pre {
   font-weight: normal;
   text-align: left;
   padding-right: var(--spacing-s);
+}
+.c-options table th label {
+  display: block;
+}
+.c-options table td {
+  vertical-align: top;
 }
 .c-options__button {
   background-color: var(--color-primary);

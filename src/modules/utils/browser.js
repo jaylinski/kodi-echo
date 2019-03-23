@@ -26,23 +26,52 @@ function getBrowser() {
 }
 
 /**
- * Return browser info.
+ * Get browser info.
  *
- * Currently only works for Firefox.
+ * Currently only works for Firefox, fallback for Chrome and Edge based on user agent.
  *
- * @returns {object}
+ * @returns {Promise}
  */
-function getBrowserInfo() {
+async function getBrowserInfo() {
   try {
     return getBrowser().runtime.getBrowserInfo();
   } catch (e) {
-    return {
-      name: null,
-      vendor: null,
-      version: null,
-      buildID: null,
-    };
+    return new Promise((resolve) => {
+      resolve(getBrowserInfoFromUserAgent());
+    });
   }
+}
+
+/**
+ * Get browser info from user agent.
+ *
+ * Includes very simple browser detection logic.
+ *
+ * @returns {object}
+ */
+function getBrowserInfoFromUserAgent() {
+  const userAgent = navigator.userAgent;
+
+  let name = null;
+  let vendor = null;
+  let version = null;
+
+  if (userAgent.indexOf('webkit')) {
+    if (userAgent.indexOf('chrome')) {
+      name = 'Chrome';
+      vendor = 'Google';
+    }
+  } else if (userAgent.indexOf('trident') || userAgent.indexOf('msie')) {
+    name = 'Edge';
+    vendor = 'Microsoft';
+  }
+
+  return {
+    name,
+    vendor,
+    version,
+    buildID: null,
+  };
 }
 
 export { getBrowser, getBrowserInfo };
