@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="256px" height="256px"
+     viewBox="0 0 256 256" enable-background="new 0 0 256 256" xml:space="preserve">
+<path fill-rule="evenodd" clip-rule="evenodd" fill="#E67E12" d="M256,94c0,6.627-5.373,12-12,12h-94c-6.627,0-12-5.373-12-12V12
+	c0-6.627,5.373-12,12-12h94c6.627,0,12,5.373,12,12V94z"/>
+<path fill-rule="evenodd" clip-rule="evenodd" fill="#E67E12" d="M256,244c0,6.627-5.373,12-12,12h-94c-6.627,0-12-5.373-12-12v-82
+	c0-6.627,5.373-12,12-12h94c6.627,0,12,5.373,12,12V244z"/>
+<path fill-rule="evenodd" clip-rule="evenodd" fill="#E67E12" d="M94,244c0,6.627-5.373,12-12,12H12c-6.627,0-12-5.373-12-12V12
+	C0,5.373,5.373,0,12,0h70c6.627,0,12,5.373,12,12V244z"/>
+</svg>

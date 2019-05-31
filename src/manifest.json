@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Kodi Echo",
-  "version": "0.1.1",
+  "name": "Echo for Kodi",
+  "version": "0.2.0",
   "description": "__MSG_extensionDescription__",
   "homepage_url": "https://github.com/jaylinski/kodi-echo",
   "content_security_policy": "default-src 'self'; connect-src ws:; style-src 'self' 'unsafe-inline'",
@@ -16,7 +16,7 @@
   },
   "browser_action": {
     "default_icon": "assets/icon-48.png",
-    "default_title": "Kodi Echo",
+    "default_title": "Echo for Kodi",
     "default_popup": "pages/popup/index.html"
   },
   "options_ui": {

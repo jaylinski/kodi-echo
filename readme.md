@@ -1,18 +1,18 @@
-# [Kodi](https://github.com/xbmc/xbmc) Echo &horbar; Browser Extension
+# Echo for [Kodi](https://github.com/xbmc/xbmc) &horbar; Browser Extension
 
-<img align="right" src="https://github.com/xbmc/xbmc/raw/master/addons/webinterface.default/icon-128.png" alt="Kodi logo">
+<img align="right" width="128" src="src/assets/logo.png" alt="Echo for Kodi logo">
 
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/jaylinski/kodi-echo.svg)
 ![npm dependencies](https://img.shields.io/david/jaylinski/kodi-echo.svg)
 
-Kodi Echo lets you share your favorite content with Kodi (XBMC).
+Echo for Kodi lets you share your favorite content with Kodi (XBMC).
 
 Should work with all [WebExtension](https://developer.mozilla.org/en-US/Add-ons/WebExtensions) compatible browsers 
 including Mozilla Firefox, Google Chrome and Microsoft Edge.
 
 If you want to try a more complete and robust extension, 
 consider installing the [Play to Kodi](https://github.com/khloke/play-to-xbmc-chrome) Chrome extension.
-Check out the [comparison between Kodi Echo and Play to Kodi](#comparison-with-play-to-kodi) for more details.
+Check out the [comparison between Echo for Kodi and Play to Kodi](#comparison-with-play-to-kodi) for more details.
 
 ## Features
 
@@ -22,9 +22,9 @@ Check out the [comparison between Kodi Echo and Play to Kodi](#comparison-with-p
 * Built with the latest technologies the web offers.
 
 <p align="center">
-<img align="top" width="297" src="screenshots/screenshot_1_controls.png" alt="Screenshot controls">
-<img align="top" width="298" src="screenshots/screenshot_2_playlist.png" alt="Screenshot playlist">
-<img align="top" width="275" src="screenshots/screenshot_3_device.png" alt="Screenshot device">
+<img align="top" width="290" src="screenshots/screenshot_1_controls.png" alt="Screenshot controls">
+<img align="top" width="290" src="screenshots/screenshot_2_playlist.png" alt="Screenshot playlist">
+<img align="top" width="290" src="screenshots/screenshot_3_device.png" alt="Screenshot device">
 </div>
 
 ## Installation
@@ -87,18 +87,18 @@ It only sends requests to your configured Kodi host.
 
 #### Comparison with Play to Kodi
 
-|                        | Kodi Echo  | [Play to Kodi](https://github.com/khloke/play-to-xbmc-chrome) |
-| ---------------------- | ---------- | ------------ |
-| Avoids content scripts | ✅          | ❎           |
-| Adds a context menu    | ✅          | ✅           |
-| Replay notifications   | ✅          | ❎           |
-| Key mappings           | ❎          | ✅           |
-| Favorites              | ❎          | ✅           |
-| Multiple devices       | ❎          | ✅           |
-| Number of plugins      | 5          | \> 30        |
-| Languages (i18n)       | 2 (en, de) | 1 (en)       |
-| Communication          | WebSockets | HTTP         |
-| Uses standard WebExtensions API | ✅ | ❎           |
+|                        | Echo for Kodi | [Play to Kodi](https://github.com/khloke/play-to-xbmc-chrome) |
+| ---------------------- | ------------- | ------------ |
+| Avoids content scripts | ✅             | ❎           |
+| Adds a context menu    | ✅             | ✅           |
+| Replay notifications   | ✅             | ❎           |
+| Key mappings           | ❎             | ✅           |
+| Favorites              | ❎             | ✅           |
+| Multiple devices       | ❎             | ✅           |
+| Number of plugins      | 5             | \> 30        |
+| Languages (i18n)       | 2 (en, de)    | 1 (en)       |
+| Communication          | WebSockets    | HTTP         |
+| Uses standard WebExtensions API | ✅    | ❎           |
 
 ## Development
 
@@ -131,4 +131,4 @@ awesome Kodi projects [Chorus2](https://github.com/xbmc/chorus2) and [Kore](http
 
 ## Copyright and license
 
-Kodi Echo is licensed under the MIT License - see the `LICENSE` file for details.
+Echo for Kodi is licensed under the MIT License - see the `LICENSE` file for details.
