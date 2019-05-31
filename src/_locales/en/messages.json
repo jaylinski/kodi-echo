@@ -1,9 +1,9 @@
 {
   "extensionName": {
-    "message": "Kodi Echo"
+    "message": "Echo for Kodi"
   },
   "extensionDescription": {
-    "message": "With Kodi Echo you can share web content with Kodi."
+    "message": "With Echo for Kodi you can share web content with Kodi."
   },
   "statusNoConnection": {
     "message": "Could not establish connection with Kodi"
