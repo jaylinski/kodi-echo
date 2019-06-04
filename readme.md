@@ -2,7 +2,7 @@
 
 <img align="right" width="128" src="src/assets/logo.png" alt="Echo for Kodi logo">
 
-![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/jaylinski/kodi-echo.svg)
+![Mozilla Add-on](https://img.shields.io/amo/v/echo-for-kodi.svg)
 ![npm dependencies](https://img.shields.io/david/jaylinski/kodi-echo.svg)
 
 Echo for Kodi lets you share your favorite content with Kodi (XBMC).
