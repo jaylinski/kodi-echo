@@ -41,7 +41,7 @@ fs.mkdirSync('./build');
 
 // Copy files.
 console.log('Copying source files ...');
-glob('./src/**/*.*', { ignore: './src/node_modules/**/*' }, (error, files) => {
+glob('./src/**/*.*', { ignore: './src/modules/npm/**/*' }, (error, files) => {
   files.map((src) => {
     const dest = src.replace('/src/', '/build/');
     mkdirSyncP(path.dirname(dest));
@@ -54,7 +54,7 @@ console.log('Copying node modules ...');
 node_modules.map((module) => {
   glob(`./node_modules/${module}/**/*.js`, {}, (error, files) => {
     files.map((src) => {
-      const dest = src.replace('/node_modules/', '/build/node_modules/');
+      const dest = src.replace('/node_modules/', '/build/modules/npm/');
       mkdirSyncP(path.dirname(dest));
       fs.createReadStream(src).pipe(fs.createWriteStream(dest));
     });

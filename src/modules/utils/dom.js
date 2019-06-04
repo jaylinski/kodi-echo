@@ -1,4 +1,4 @@
-import { html as litTaggedTemplateLiteral, render as litRender } from './../../node_modules/lit-html/lit-html.js';
+import { html as litTaggedTemplateLiteral, render as litRender } from './../npm/lit-html/lit-html.js';
 
 /**
  * Tagged template literal for rendering.
