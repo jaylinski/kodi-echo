@@ -29,15 +29,10 @@ Check out the [comparison between Echo for Kodi and Play to Kodi](#comparison-wi
 
 ## Installation
 
-> This extension is currently not available on any store and has to be built manually.
-
-* Mozilla Firefox
-* Google Chrome
+* [Mozilla Firefox](https://addons.mozilla.org/de/firefox/addon/echo-for-kodi/)
+* Google Chrome (currently not available in the Chrome Web Store)
 
 <!-- TODO Test in in Microsoft Edge -->
-
-> **This extension requires a script module compatible browser!**   
-> See this chart for current browser support: [https://caniuse.com/#feat=es6-module](https://caniuse.com/#feat=es6-module)
 
 ### Enabling & Configuring
 
