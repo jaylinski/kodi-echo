@@ -2,7 +2,7 @@
 
 <img align="right" width="128" src="src/assets/logo.png" alt="Echo for Kodi logo">
 
-![Mozilla Add-on](https://img.shields.io/amo/v/echo-for-kodi.svg)
+[![Mozilla Add-on](https://img.shields.io/amo/v/echo-for-kodi.svg)](https://addons.mozilla.org/de/firefox/addon/echo-for-kodi/)
 ![npm dependencies](https://img.shields.io/david/jaylinski/kodi-echo.svg)
 
 Echo for Kodi lets you share your favorite content with Kodi (XBMC).
@@ -111,9 +111,8 @@ Run `npm start`.
 * Disable play button if website is not supported
 * Add key mappings (enter = share, space = play/pause, q = queue)
   * [Support media keys](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/commands#Media_keys)
-* Get approval from XBMC Foundation for use of logo and name
-* Publish as Firefox Add-on, Chrome Extension and Microsoft Edge Extension
-  * Add badges for for Chrome and Firefox addons (https://github.com/badges/shields)
+* Publish as Chrome Extension and Microsoft Edge Extension
+  * Add badge for Chrome addon (https://github.com/badges/shields)
 * Consider implementing a "Play this next" feature
 * Get rid of `unsafe-inline` in content security policy
 * Test critical code
