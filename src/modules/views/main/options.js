@@ -8,16 +8,34 @@ export default (store, i18n) => {
 
   return html`
     <div class="c-options c-section__content">
+      <!-- TODO Use more visually appealing on-off switches:
+         https://material.angular.io/components/slide-toggle/overview -->
       <table cellspacing="0" cellpadding="0">
         <tbody>
+          <tr>
+            <th>
+              <label for="detect_embedded_media">${i18n.getMessage('optionsAutoDetectEmbeddedMediaLinks')}</label>
+              <small>${i18n.getMessage('optionsExperimental')}</small>
+            </th>
+            <td>
+              <input
+                @change="${store.actions.updateOptions}"
+                type="checkbox"
+                id="detect_embedded_media"
+                data-option="autoDetectEmbeddedMediaLinks"
+                role="switch"
+                .checked=${store.options.autoDetectEmbeddedMediaLinks}
+                ?checked=${store.options.autoDetectEmbeddedMediaLinks}
+                aria-checked="${store.options.autoDetectEmbeddedMediaLinks ? 'true' : 'false'}"
+              />
+            </td>
+          </tr>
           <tr>
             <th>
               <label for="replay_notification">${i18n.getMessage('optionsReplayNotifications')}</label>
               <small>${i18n.getMessage('optionsExperimental')}</small>
             </th>
             <td>
-              <!-- TODO Use a more visually appealing on-off switch:
-                   https://material.angular.io/components/slide-toggle/overview -->
               <input
                 @change="${store.actions.updateOptions}"
                 type="checkbox"
