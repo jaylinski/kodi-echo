@@ -6,15 +6,7 @@ export default (i18n) => html`
     <p>${i18n.getMessage('helpText')}</p>
     <ul>
       <li><a href="https://github.com/jaylinski/kodi-echo/issues" target="_blank">GitHub Issues</a></li>
-      <!--
-        TODO Insert links to extension stores
-        <li>
-          <a href="" target="_blank">Chrome Web Store</a>
-        </li>
-        <li>
-          <a href="" target="_blank">Firefox Add-ons</a>
-        </li>
-      -->
+      <li><a href="https://addons.mozilla.org/firefox/addon/echo-for-kodi/" target="_blank">Firefox Add-on</a></li>
     </ul>
   </div>
 `;
