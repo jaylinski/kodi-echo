@@ -29,7 +29,7 @@ Check out the [comparison between Echo for Kodi and Play to Kodi](#comparison-wi
 
 ## Installation
 
-* [Mozilla Firefox](https://addons.mozilla.org/de/firefox/addon/echo-for-kodi/)
+* [Mozilla Firefox](https://addons.mozilla.org/firefox/addon/echo-for-kodi/)
 * Google Chrome (currently not available in the Chrome Web Store)
 
 <!-- TODO Test in in Microsoft Edge -->
