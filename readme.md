@@ -107,16 +107,7 @@ Run `npm start`.
 
 ### Roadmap
 
-* Improve display of files (Youtube, Soundcloud, ...) in playlist view
-* Disable play button if website is not supported
-* Add key mappings (enter = share, space = play/pause, q = queue)
-  * [Support media keys](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/commands#Media_keys)
 * Publish as Chrome Extension and Microsoft Edge Extension
-  * Add badge for Chrome addon (https://github.com/badges/shields)
-* Consider implementing a "Play this next" feature
-* Get rid of `unsafe-inline` in content security policy
-* Test critical code
-* Support usage of multiple devices
 
 ## Attributions
 
