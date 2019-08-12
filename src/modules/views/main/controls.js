@@ -9,8 +9,8 @@ const PROGRESS_UPDATE_INTERVAL = 1000; // Milliseconds
  */
 function calculateProgress(store) {
   clearInterval(window.progressInterval);
-  window.progressInterval = setInterval(() => {
-    if (progress) {
+  if (!store.paused) {
+    window.progressInterval = setInterval(() => {
       const progress = store.progress;
       const time = progress.time.hours * 3600 + progress.time.minutes * 60 + progress.time.seconds;
       const newTime = time + PROGRESS_UPDATE_INTERVAL / 1000;
@@ -31,8 +31,8 @@ function calculateProgress(store) {
       progress.time.seconds = seconds;
 
       store.commit('progress', progress);
-    }
-  }, PROGRESS_UPDATE_INTERVAL);
+    }, PROGRESS_UPDATE_INTERVAL);
+  }
 }
 
 function progress(store) {
