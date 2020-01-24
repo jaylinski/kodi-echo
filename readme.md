@@ -21,7 +21,7 @@ Check out the [comparison between Echo for Kodi and Play to Kodi](#comparison-wi
 * Does not break websites by avoiding to inject scripts.
 * Built with the latest technologies the web offers.
 
-<p align="center">
+<div align="center">
 <img align="top" width="290" src="screenshots/screenshot_1_controls.png" alt="Screenshot controls">
 <img align="top" width="290" src="screenshots/screenshot_2_playlist.png" alt="Screenshot playlist">
 <img align="top" width="290" src="screenshots/screenshot_3_device.png" alt="Screenshot device">
