@@ -31,10 +31,10 @@
   },
   "devDependencies": {
     "glob": "^7.1.3",
-    "onchange": "^5.2.0",
+    "onchange": "^6.1.0",
     "prettier": "^1.16.4",
-    "sharp": "^0.21.3",
-    "web-ext": "^2.9.3"
+    "sharp": "^0.24.0",
+    "web-ext": "^4.0.0"
   },
   "prettier": {
     "arrowParens": "always",
@@ -43,7 +43,7 @@
     "trailingComma": "es5"
   },
   "engines": {
-    "node": ">=8.9"
+    "node": ">=12.13"
   },
   "os": [
     "darwin",
