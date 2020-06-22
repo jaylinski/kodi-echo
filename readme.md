@@ -22,9 +22,9 @@ Check out the [comparison between Echo for Kodi and Play to Kodi](#comparison-wi
 * Built with the latest technologies the web offers.
 
 <div align="center">
-<img align="top" width="290" src="screenshots/screenshot_1_controls.png" alt="Screenshot controls">
-<img align="top" width="290" src="screenshots/screenshot_2_playlist.png" alt="Screenshot playlist">
-<img align="top" width="290" src="screenshots/screenshot_3_device.png" alt="Screenshot device">
+<img align="top" width="270" src="screenshots/screenshot_1_controls.png" alt="Screenshot controls">
+<img align="top" width="270" src="screenshots/screenshot_2_playlist.png" alt="Screenshot playlist">
+<img align="top" width="270" src="screenshots/screenshot_3_device.png" alt="Screenshot device">
 </div>
 
 ## Installation
