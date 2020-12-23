@@ -34,8 +34,6 @@ export default class View extends EventTarget {
     // If no device is configured, display the devices page.
     if (!store.options.devices[0].ip) store.route = 'devices';
 
-    return html`
-      ${header(store)} ${status(store, i18n)} ${main(store, i18n)} ${footer(store, i18n, manifest)}
-    `;
+    return html`${header(store)} ${status(store, i18n)} ${main(store, i18n)} ${footer(store, i18n, manifest)}`;
   }
 }
