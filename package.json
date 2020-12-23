@@ -11,6 +11,7 @@
     "type": "git",
     "url": "git://github.com/jaylinski/kodi-echo"
   },
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "start": "onchange --kill \"./*(src)/**/*\" -- npm run watch:tasks",
@@ -20,21 +21,23 @@
     "clean:build": "rm -rf ./build/",
     "clean": "npm run clean:build && npm run clean:packages",
     "format:scripts": "prettier --write \"./scripts/**/*.js\"",
-    "format:src": "prettier --write \"./src/**/*.js\"",
+    "format:src": "prettier --write \"./src/**/*.js\" \"!./src/modules/npm\"",
     "format": "npm run format:src && npm run format:scripts",
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
     "bundle:firefox": "web-ext -s build build",
     "bundle": "npm run clean:packages && npm run bundle:firefox",
     "watch:tasks": "npm run format && npm run build"
   },
   "dependencies": {
-    "lit-html": "^1.0.0"
+    "lit-html": "^1.3.0"
   },
   "devDependencies": {
-    "glob": "^7.1.3",
-    "onchange": "^6.1.0",
-    "prettier": "^1.16.4",
-    "sharp": "^0.24.0",
-    "web-ext": "^4.0.0"
+    "glob": "^7.1.6",
+    "jest": "^26.6.3",
+    "onchange": "^7.1.0",
+    "prettier": "^2.2.1",
+    "sharp": "^0.27.0",
+    "web-ext": "^5.4.1"
   },
   "prettier": {
     "arrowParens": "always",
@@ -43,7 +46,7 @@
     "trailingComma": "es5"
   },
   "engines": {
-    "node": ">=12.13"
+    "node": ">=14.15"
   },
   "os": [
     "darwin",

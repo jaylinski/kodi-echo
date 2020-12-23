@@ -1,7 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
-const sharp = require('sharp');
+import fs from 'fs';
+import path from 'path';
+import glob from 'glob';
+import sharp from 'sharp';
 
 // #######################
 // ### Configuration
@@ -62,12 +62,10 @@ node_modules.map((module) => {
 });
 
 // Resize images & copy.
-images.map(function(image) {
+images.map(function (image) {
   console.log('Resizing image ' + image.src + ' to size ' + image.size);
   mkdirSyncP(path.dirname(image.dst));
-  fs.createReadStream(image.src)
-    .pipe(sharp().resize(image.size))
-    .pipe(fs.createWriteStream(image.dst));
+  fs.createReadStream(image.src).pipe(sharp().resize(image.size)).pipe(fs.createWriteStream(image.dst));
 });
 
 console.log('Build finished!');
