@@ -41,7 +41,7 @@ fs.mkdirSync('./build');
 
 // Copy files.
 console.log('Copying source files ...');
-glob('./src/**/*.*', { ignore: './src/modules/npm/**/*' }, (error, files) => {
+glob('./src/**/*.*', { ignore: ['./src/modules/npm/**/*', './src/**/*.test.js'] }, (error, files) => {
   files.map((src) => {
     const dest = src.replace('/src/', '/build/');
     mkdirSyncP(path.dirname(dest));
