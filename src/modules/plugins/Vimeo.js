@@ -16,7 +16,7 @@ class Vimeo extends WebPlugin {
   }
 
   getVideoId(url) {
-    return url.pathname.replace('/', '');
+    return url.pathname.split('/').pop();
   }
 }
 
