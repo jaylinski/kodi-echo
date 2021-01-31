@@ -16,7 +16,11 @@ class Vimeo extends WebPlugin {
   }
 
   getVideoId(url) {
-    return url.pathname.split('/').pop();
+    return url.pathname
+      .replace(/^\/+/, '')
+      .split('/')
+      .filter((n) => Number.parseInt(n, 10))
+      .join(':');
   }
 }
 
