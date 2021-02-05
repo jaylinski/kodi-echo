@@ -17,6 +17,15 @@ test('Generates a plugin path from a channel URL', async () => {
   expect(pluginPath).toBe('plugin://plugin.video.vimeo/play/?video_id=388640017');
 });
 
+
+test('Generates a plugin path from a group URL', async () => {
+  const vimeo = new Vimeo();
+  const url = new URL('https://vimeo.com/groups/motion/videos/504364228');
+  const pluginPath = await vimeo.getPluginPath({ url });
+
+  expect(pluginPath).toBe('plugin://plugin.video.vimeo/play/?video_id=504364228');
+});
+
 test('Generates a plugin path from an unlisted video URL', async () => {
   const vimeo = new Vimeo();
   const url = new URL('https://vimeo.com/12345/6789');
