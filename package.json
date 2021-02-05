@@ -38,6 +38,12 @@
     "sharp": "^0.27.0",
     "web-ext": "^5.4.1"
   },
+  "jest": {
+    "injectGlobals": false,
+    "globals": {
+      "browser": true
+    }
+  },
   "prettier": {
     "arrowParens": "always",
     "printWidth": 120,

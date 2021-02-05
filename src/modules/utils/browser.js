@@ -1,8 +1,3 @@
-function BrowserException(message) {
-  this.message = message;
-  this.name = 'BrowserException';
-}
-
 /**
  * Get the browser.
  *
@@ -22,7 +17,7 @@ function getBrowser() {
     return chrome;
   } catch (e) {}
 
-  throw new BrowserException('No supported browser found.');
+  throw new Error('No supported browser found.');
 }
 
 /**
