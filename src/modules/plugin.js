@@ -6,11 +6,6 @@ import Youtube from './plugins/Youtube.js';
 
 const plugins = [new Mixcloud(), new Soundcloud(), new Twitch(), new Vimeo(), new Youtube()];
 
-function PluginException(message) {
-  this.message = message;
-  this.name = 'PluginException';
-}
-
 /**
  * Get the plugin by the URL.
  *
@@ -20,7 +15,7 @@ function getPluginByUrl(url) {
   const plugin = plugins.find((plugin) => plugin.ownsUrl(url.hostname));
 
   if (!plugin) {
-    throw new PluginException(`No plugin found for "${url.hostname}".`);
+    throw new Error(`No plugin found for "${url.hostname}".`);
   }
 
   return plugin;
