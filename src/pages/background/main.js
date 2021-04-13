@@ -1,5 +1,5 @@
 import Options from './../../modules/Options.js';
-import Kodi from '../../modules/Kodi.js';
+import Kodi from './../../modules/Kodi.js';
 import { getBrowser, getBrowserInfo } from './../../modules/utils/browser.js';
 
 const RECONNECT_TIMEOUT = 10000; // milliseconds
