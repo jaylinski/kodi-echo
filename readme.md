@@ -30,9 +30,8 @@ Check out the [comparison between Echo for Kodi and Play to Kodi](#comparison-wi
 ## Installation
 
 * [Mozilla Firefox](https://addons.mozilla.org/firefox/addon/echo-for-kodi/)
-* Google Chrome (currently not available in the Chrome Web Store)
-
-<!-- TODO Test in in Microsoft Edge -->
+* Google Chrome (currently not available in Chrome Web Store)
+* Microsoft Edge (currently not available in Microsoft Extensions Store)
 
 ### Enabling & Configuring
 
@@ -104,10 +103,6 @@ Run `npm run build`.
 ### Develop
 
 Run `npm start`.
-
-### Roadmap
-
-* Publish as Chrome Extension and Microsoft Edge Extension
 
 ## Attributions
 
