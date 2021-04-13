@@ -30,6 +30,7 @@ export default class Kodi extends EventTarget {
     // Listen for events from Kodi.
     // We could immediately use the sent information to update the store, but it easier to just do another sync.
     this.api.listen('Application.OnVolumeChanged', () => this.sync());
+    this.api.listen('Player.OnAVStart', () => this.sync());
     this.api.listen('Player.OnPropertyChanged', () => this.sync());
     this.api.listen('Player.OnPlay', () => this.sync());
     this.api.listen('Player.OnPause', () => this.sync());
@@ -125,7 +126,7 @@ export default class Kodi extends EventTarget {
   }
 
   async seek(percentage) {
-    await this.api.send('Player.seek', [this.activePlayerId, percentage]);
+    await this.api.send('Player.Seek', [this.activePlayerId, { percentage }]);
   }
 
   async add(file) {
