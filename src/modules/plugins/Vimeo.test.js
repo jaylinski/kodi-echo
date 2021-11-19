@@ -33,6 +33,14 @@ test('Generates a plugin path from a showcase URL', async () => {
   expect(pluginPath).toBe('plugin://plugin.video.vimeo/play/?video_id=1234567');
 });
 
+test('Generates a plugin path from an event URL', async () => {
+  const vimeo = new Vimeo();
+  const url = new URL('https://vimeo.com/event/123/videos/1234567');
+  const pluginPath = await vimeo.getPluginPath({ url });
+
+  expect(pluginPath).toBe('plugin://plugin.video.vimeo/play/?video_id=1234567');
+});
+
 test('Generates a plugin path from an unlisted video URL', async () => {
   const vimeo = new Vimeo();
   const url = new URL('https://vimeo.com/12345/hash');
