@@ -73,7 +73,7 @@ class Background {
       type: 'basic',
       title: browser.i18n.getMessage('extensionName'),
       message: browser.i18n.getMessage('backgroundReplayNotification'),
-      iconUrl: browser.extension.getURL(manifest.icons[128]),
+      iconUrl: browser.runtime.getURL(manifest.icons[128]),
     };
 
     // Buttons are currently not supported in Firefox.
