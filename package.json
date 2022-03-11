@@ -22,6 +22,7 @@
     "format:scripts": "prettier --write \"./scripts/**/*.js\"",
     "format:src": "prettier --write \"./src/**/*.js\" \"!./src/modules/npm\"",
     "format": "npm run format:src && npm run format:scripts",
+    "lint": "npm run build && web-ext -s build lint",
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
     "bundle:firefox": "web-ext -s build build",
     "bundle": "npm run clean:packages && npm run bundle:firefox",
@@ -32,11 +33,11 @@
   },
   "devDependencies": {
     "glob": "^7.1.6",
-    "jest": "^26.6.3",
+    "jest": "^27.5.1",
     "onchange": "^7.1.0",
     "prettier": "^2.2.1",
-    "sharp": "^0.27.0",
-    "web-ext": "^5.4.1"
+    "sharp": "^0.30.2",
+    "web-ext": "^6.7.0"
   },
   "jest": {
     "injectGlobals": false,
