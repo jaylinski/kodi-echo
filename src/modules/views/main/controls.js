@@ -44,17 +44,13 @@ function progress(store) {
       <div class="c-progress__bar"></div>
       <div class="c-progress__timing">
         <span class="c-progress__timing-current">
-          ${progress.time.hours
-            ? progress.time.hours.toString().concat(':')
-            : ''}${progress.time.minutes.toString().padStart(2, '0')}:${progress.time.seconds
+          ${progress.time.hours ? progress.time.hours.toString().concat(':') : ''}${progress.time.minutes
             .toString()
-            .padStart(2, '0')}
+            .padStart(2, '0')}:${progress.time.seconds.toString().padStart(2, '0')}
         </span>
         <span class="c-progress__timing-divider">/</span>
         <span class="c-progress__timing-duration">
-          ${progress.duration.hours
-            ? progress.duration.hours.toString().concat(':')
-            : ''}${progress.duration.minutes
+          ${progress.duration.hours ? progress.duration.hours.toString().concat(':') : ''}${progress.duration.minutes
             .toString()
             .padStart(2, '0')}:${progress.duration.seconds.toString().padStart(2, '0')}
         </span>
