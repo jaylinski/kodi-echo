@@ -83,14 +83,17 @@
   "optionsReplayNotifications": {
     "message": "Wiederholungsbenachrichtigung"
   },
+  "optionsAutoDetectEmbeddedMediaLinks": {
+    "message": "Eingebettete Media-Links automatisch erkennen"
+  },
+  "optionsExperimental": {
+    "message": "Experimentell"
+  },
   "optionsReloadInfo": {
     "message": "Es kann sein, dass du die Extension neu laden musst, wenn du Einstellungen geändert hast:"
   },
   "optionsReloadButton": {
     "message": "Extension neu laden"
-  },
-  "optionsExperimental": {
-    "message": "Experimentell"
   },
   "menuPlay": {
     "message": "► Abspielen"
