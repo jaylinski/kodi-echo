@@ -48,9 +48,13 @@ export default class Store extends EventTarget {
         await this.kodi.setRepeat();
         await this.kodi.sync();
       },
-      seek: (event) => {
+      seek: async (event) => {
         const percentage = Math.round((event.layerX / event.currentTarget.offsetWidth) * 100);
-        this.kodi.seek(percentage);
+        await this.kodi.seek(percentage);
+
+        // Kodi fires the `Player.OnSeek`-event before `playerProps` are updated, so we have to sync manually.
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        await this.kodi.sync();
       },
       share: async () => {
         try {
