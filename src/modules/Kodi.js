@@ -83,11 +83,7 @@ export default class Kodi extends EventTarget {
 
     await setLocal({ lastPlayed: file });
 
-    try {
-      plugin.stopCurrentlyPlayingMedia(); // TODO An interface would be nice (would TypeScript help?).
-    } catch (error) {
-      console.warn(error);
-    }
+    plugin.stopCurrentlyPlayingMedia();
 
     await this.clear();
     await this.add(file);

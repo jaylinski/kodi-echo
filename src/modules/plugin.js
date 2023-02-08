@@ -9,7 +9,9 @@ const plugins = [new Mixcloud(), new Soundcloud(), new Twitch(), new Vimeo(), ne
 /**
  * Get the plugin by the URL.
  *
+ * @typedef {import('./plugins/WebPlugin.js')} WebPlugin
  * @param {object} url
+ * @return {WebPlugin}
  */
 function getPluginByUrl(url) {
   const plugin = plugins.find((plugin) => plugin.ownsUrl(url.hostname));

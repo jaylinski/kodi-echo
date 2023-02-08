@@ -12,4 +12,6 @@ export default class WebPlugin {
   ownsUrl(hostname) {
     return this.domains.find((domain) => hostname.match(domain) !== null) !== undefined;
   }
+
+  async stopCurrentlyPlayingMedia() {}
 }
