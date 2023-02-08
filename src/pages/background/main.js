@@ -92,26 +92,24 @@ class Background {
 const background = new Background();
 background.listen();
 
-browser.runtime.onInstalled.addListener(() => {
-  // TODO Restrict to `targetUrlPatterns` according to available plugins?
-  // TODO Change to standard `browser.menus.(create|onClicked)` as soon as supported by browsers!
-  browser.contextMenus.create({
-    id: 'kodi',
-    title: browser.i18n.getMessage('extensionName'),
-    contexts: ['link'],
-  });
-  browser.contextMenus.create({
-    id: 'kodi-play',
-    parentId: 'kodi',
-    title: browser.i18n.getMessage('menuPlay'),
-    contexts: ['link'],
-  });
-  browser.contextMenus.create({
-    id: 'kodi-queue',
-    parentId: 'kodi',
-    title: browser.i18n.getMessage('menuQueue'),
-    contexts: ['link'],
-  });
+// TODO Restrict to `targetUrlPatterns` according to available plugins?
+// TODO Change to standard `browser.menus.(create|onClicked)` as soon as supported by browsers!
+browser.contextMenus.create({
+  id: 'kodi',
+  title: browser.i18n.getMessage('extensionName'),
+  contexts: ['link'],
+});
+browser.contextMenus.create({
+  id: 'kodi-play',
+  parentId: 'kodi',
+  title: browser.i18n.getMessage('menuPlay'),
+  contexts: ['link'],
+});
+browser.contextMenus.create({
+  id: 'kodi-queue',
+  parentId: 'kodi',
+  title: browser.i18n.getMessage('menuQueue'),
+  contexts: ['link'],
 });
 
 browser.runtime.onMessage.addListener((request) => {
