@@ -90,11 +90,20 @@ export default class Kodi extends EventTarget {
     await this.play();
   }
 
-  async queue(url) {
+  /**
+   * @param {URL} url
+   * @param {Object|null} notification
+   * @param {string} notification.title
+   * @param {string} notification.message
+   * @returns {Promise<void>}
+   */
+  async queue(url, notification = null) {
     const plugin = getPluginByUrl(url);
     const file = await plugin.getPluginPath({ url });
 
     await this.add(file);
+
+    if (notification) await this.showNotification(notification.title, notification.message);
   }
 
   async play(position = 0) {
@@ -117,10 +126,18 @@ export default class Kodi extends EventTarget {
     await this.api.send('Player.Stop', [this.activePlayerId]);
   }
 
+  /**
+   * @param {('next'|'previous')} to
+   * @return {Promise<void>}
+   */
   async goTo(to) {
     await this.api.send('Player.GoTo', [this.activePlayerId, to]);
   }
 
+  /**
+   * @param {number} percentage
+   * @return {Promise<void>}
+   */
   async seek(percentage) {
     await this.api.send('Player.Seek', [this.activePlayerId, { percentage }]);
   }
@@ -141,6 +158,10 @@ export default class Kodi extends EventTarget {
     await this.api.send('Application.SetVolume', { volume });
   }
 
+  /**
+   * @param {boolean|'toggle'} mute
+   * @return {Promise<void>}
+   */
   async setMute(mute) {
     await this.api.send('Application.SetMute', { mute });
   }
@@ -151,5 +172,14 @@ export default class Kodi extends EventTarget {
 
   async setShuffle() {
     await this.api.send('Player.SetShuffle', [this.activePlayerId, 'toggle']);
+  }
+
+  /**
+   * @param {string} title
+   * @param {string} message
+   * @return {Promise<void>}
+   */
+  async showNotification(title, message) {
+    await this.api.send('GUI.ShowNotification', { title, message });
   }
 }
