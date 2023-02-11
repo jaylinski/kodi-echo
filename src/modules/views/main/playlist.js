@@ -49,7 +49,7 @@ export default (store, i18n) => {
                     title="${i18n.getMessage('mainControlsRemove')}"
                     class="c-playlist__button"
                   >
-                    🗙
+                    ⨯
                   </button>
                 </span>
               </li>
