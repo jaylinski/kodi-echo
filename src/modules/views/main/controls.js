@@ -1,11 +1,13 @@
 import { html } from './../../utils/dom.js';
 
+/** @typedef {import('./../../Store.js')} Store */
+
 const PROGRESS_UPDATE_INTERVAL = 1000; // Milliseconds
 
 /**
  * Calculate the progress of the currently playing media.
  *
- * @param store
+ * @param {Store} store
  */
 function calculateProgress(store) {
   clearInterval(window.progressInterval);
@@ -35,6 +37,10 @@ function calculateProgress(store) {
   }
 }
 
+/**
+ * @param {Store} store
+ * @return {object}
+ */
 function progress(store) {
   calculateProgress(store);
   const progress = store.progress;
@@ -59,7 +65,18 @@ function progress(store) {
   `;
 }
 
+/**
+ * @param {Store} store
+ * @param {object} i18n
+ * @return {object}
+ */
 export default (store, i18n) => {
+  const queueAction = () =>
+    store.actions.queue({
+      title: i18n.getMessage('extensionName'),
+      message: i18n.getMessage('notificationAdded'),
+    });
+
   return html`
     <div class="c-section__content">
       <ul class="c-share">
@@ -73,7 +90,7 @@ export default (store, i18n) => {
           <ul class="c-share__dropdown">
             <li>
               <button
-                @click="${store.actions.queue}"
+                @click="${queueAction}"
                 @mouseup="${(event) => event.currentTarget.blur()}"
                 id="share"
                 class="c-share__button c-share__button--dropdown"

@@ -35,10 +35,10 @@ export default class Store extends EventTarget {
       pause: () => this.kodi.playPause(),
       playItem: (position) => this.kodi.goTo(position),
       prev: () => this.kodi.goTo('previous'),
-      queue: async () => {
+      queue: async (notification) => {
         try {
           const activeTab = await getActiveTab();
-          await this.kodi.queue(new URL(activeTab.url));
+          await this.kodi.queue(new URL(activeTab.url), notification);
         } catch (error) {
           this.commit('apiError', error);
         }
