@@ -441,7 +441,7 @@ p, pre {
 }
 .c-options table th,
 .c-options table td {
-  padding: 0;
+  padding: 0 0 10px 0;
 }
 .c-options table th {
   font-weight: normal;

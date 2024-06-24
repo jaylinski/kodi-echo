@@ -68,11 +68,11 @@
   "footerOptions": {
     "message": "Options"
   },
-  "optionsUser": {
-    "message": "User"
-  },
   "optionsDeviceName": {
     "message": "Device name"
+  },
+  "optionsUser": {
+    "message": "User"
   },
   "optionsPassword": {
     "message": "Password"
@@ -83,14 +83,17 @@
   "optionsReplayNotifications": {
     "message": "Replay notification"
   },
+  "optionsAutoDetectEmbeddedMediaLinks": {
+    "message": "Auto-detect embedded media links"
+  },
   "optionsExperimental": {
+    "message": "Experimental"
+  },
+  "optionsReloadInfo": {
     "message": "You may have to reload the extension if you changed a setting:"
   },
   "optionsReloadButton": {
     "message": "Reload extension"
-  },
-  "optionsFirefoxBug": {
-    "message": "Experimental"
   },
   "menuPlay": {
     "message": "► Play"
