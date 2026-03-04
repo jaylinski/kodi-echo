@@ -7,7 +7,7 @@
 
 Echo for Kodi lets you share your favorite content with Kodi (XBMC).
 
-Should work with all [WebExtension](https://developer.mozilla.org/en-US/Add-ons/WebExtensions) compatible browsers 
+Should work with all [WebExtension](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions) compatible browsers 
 including Mozilla Firefox, Google Chrome and Microsoft Edge.
 
 If you want to try a more complete and robust extension, 
@@ -59,7 +59,7 @@ it requires the permission
 
 * to **send you notifications**   
 
-For more information on permissions, visit [developer.mozilla.org](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/permissions).
+For more information on permissions, visit [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/permissions).
 
 ## Privacy
 
