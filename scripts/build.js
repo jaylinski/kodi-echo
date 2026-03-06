@@ -41,21 +41,21 @@ fs.mkdirSync('./build', { recursive: true });
 
 // Copy files.
 console.log('Copying source files ...');
-const src = glob('./src/**/*.*', { exclude: ['./src/modules/npm/**/*', './src/**/*.test.js'] });
-for await (const file of src) {
-  const dest = file.replace('src/', 'build/');
+const files = glob('./src/**/*.*', { exclude: ['./src/modules/npm/**/*', './src/**/*.test.js'] });
+for await (const filePath of files) {
+  const dest = filePath.replace('src/', 'build/');
   fs.mkdirSync(path.dirname(dest), { recursive: true });
-  fs.createReadStream(file).pipe(fs.createWriteStream(dest));
+  fs.createReadStream(filePath).pipe(fs.createWriteStream(dest));
 }
 
 // Copy dependencies.
 console.log('Copying node modules ...');
 for await (const module of node_modules) {
-  const modules = glob(`./node_modules/${module}/**/*.js`);
-  for await (const module of modules) {
-    const dest = module.replace('node_modules/', 'build/modules/npm/');
+  const files = glob(`./node_modules/${module}/**/*.js`);
+  for await (const filePath of files) {
+    const dest = filePath.replace('node_modules/', 'build/modules/npm/');
     fs.mkdirSync(path.dirname(dest), { recursive: true });
-    fs.createReadStream(module).pipe(fs.createWriteStream(dest));
+    fs.createReadStream(filePath).pipe(fs.createWriteStream(dest));
   }
 }
 

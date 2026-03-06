@@ -1,52 +1,6 @@
-import { getBrowser, getBrowserInfo } from './browser.js';
+import { getBrowser } from './browser.js';
 
 const browser = getBrowser();
-
-/**
- * Execute a script in a tab.
- *
- * This is needed because Firefox uses Promise-based queries and
- * Chrome uses callback-based queries.
- *
- * @param {object} details
- * @returns {Promise}
- */
-async function executeScriptTabs(details) {
-  const browserInfo = await getBrowserInfo();
-
-  if (browserInfo.name !== 'Firefox') {
-    return new Promise((resolve) => {
-      browser.tabs.executeScript(details, (result) => {
-        resolve(result);
-      });
-    });
-  } else {
-    return browser.tabs.executeScript(details);
-  }
-}
-
-/**
- * Query the tabs.
- *
- * This is needed because Firefox uses Promise-based queries and
- * Chrome uses callback-based queries.
- *
- * @param {object} queryInfo
- * @returns {Promise}
- */
-async function queryTabs(queryInfo) {
-  const browserInfo = await getBrowserInfo();
-
-  if (browserInfo.name !== 'Firefox') {
-    return new Promise((resolve) => {
-      browser.tabs.query(queryInfo, (tabs) => {
-        resolve(tabs);
-      });
-    });
-  } else {
-    return browser.tabs.query(queryInfo);
-  }
-}
 
 /**
  * Get the active tab from the active window.
@@ -54,17 +8,30 @@ async function queryTabs(queryInfo) {
  * @returns {Promise}
  */
 async function getActiveTab() {
-  const tabs = await queryTabs({ active: true, currentWindow: true });
+  const tabs = await browser.tabs.query({ active: true, currentWindow: true });
   return tabs[0];
 }
 
 /**
- * @param {string} code
+ * A JavaScript function to inject.
+ *
+ * This function is serialized and then deserialized for injection.
+ * This means that any bound parameters and execution context are lost.
+ *
+ * @name scriptFunction
+ * @function
  */
-async function executeScriptInActiveTab(code) {
-  return await executeScriptTabs({
-    code: code,
+/**
+ * @param {scriptFunction} func
+ */
+async function executeScriptInActiveTab(func) {
+  const activeTab = await getActiveTab();
+  return await browser.scripting.executeScript({
+    target: {
+      tabId: activeTab.id,
+    },
+    func,
   });
 }
 
-export { queryTabs, getActiveTab, executeScriptInActiveTab };
+export { getActiveTab, executeScriptInActiveTab };

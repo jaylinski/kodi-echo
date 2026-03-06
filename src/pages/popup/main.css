@@ -212,8 +212,8 @@ p, pre {
   justify-content: space-between;
   padding: var(--spacing-m) 0 0 0;
 }
-.c-controls--active {
-  color: var(--color-primary);
+.c-controls--active .c-controls__button {
+  border-color: var(--color-primary-hover);
 }
 .c-controls__button {
   font-size: 120%;
@@ -259,10 +259,12 @@ p, pre {
   display: block;
 }
 .c-share__now  {
+  display: flex;
   flex-grow: 1;
   margin-right: 1px;
 }
 .c-share__more {
+  display: flex;
   flex-shrink: 0;
   position: relative;
   width: 58px;

@@ -27,33 +27,32 @@ export default (store, i18n) => {
     <div class="c-playlist">
       <ul>
         ${list.map(
-          (item, index) =>
-            html`
-              <li class="c-playlist__item ${isPlaying(store, item) ? 'c-playlist__item--playing' : ''}">
-                <span class="c-playlist__title c-playlist--text-ellipsis" title="${getTitle(i18n, item)}"
-                  >${getTitle(i18n, item)}</span
+          (item, index) => html`
+            <li class="c-playlist__item ${isPlaying(store, item) ? 'c-playlist__item--playing' : ''}">
+              <span class="c-playlist__title c-playlist--text-ellipsis" title="${getTitle(i18n, item)}"
+                >${getTitle(i18n, item)}</span
+              >
+              <span class="c-playlist__subtitle c-playlist--text-ellipsis" title="${getSubTitle(item)}"
+                >${getSubTitle(item)}</span
+              >
+              <span class="c-playlist__actions">
+                <button
+                  @click="${() => store.actions.playItem(index)}"
+                  title="${i18n.getMessage('mainControlsPlay')}"
+                  class="c-playlist__button"
                 >
-                <span class="c-playlist__subtitle c-playlist--text-ellipsis" title="${getSubTitle(item)}"
-                  >${getSubTitle(item)}</span
+                  ►
+                </button>
+                <button
+                  @click="${() => store.actions.removeItem(index)}"
+                  title="${i18n.getMessage('mainControlsRemove')}"
+                  class="c-playlist__button"
                 >
-                <span class="c-playlist__actions">
-                  <button
-                    @click="${() => store.actions.playItem(index)}"
-                    title="${i18n.getMessage('mainControlsPlay')}"
-                    class="c-playlist__button"
-                  >
-                    ►
-                  </button>
-                  <button
-                    @click="${() => store.actions.removeItem(index)}"
-                    title="${i18n.getMessage('mainControlsRemove')}"
-                    class="c-playlist__button"
-                  >
-                    ⨯
-                  </button>
-                </span>
-              </li>
-            `
+                  ⨯
+                </button>
+              </span>
+            </li>
+          `
         )}
       </ul>
     </div>
