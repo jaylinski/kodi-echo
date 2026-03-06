@@ -1,11 +1,13 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Echo for Kodi",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "description": "__MSG_extensionDescription__",
   "homepage_url": "https://github.com/jaylinski/kodi-echo",
-  "content_security_policy": "default-src 'self'; connect-src ws:; style-src 'self' 'unsafe-inline'",
-  "permissions": ["activeTab", "contextMenus", "menus", "storage"],
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; connect-src ws:; style-src 'self' 'unsafe-inline'"
+  },
+  "permissions": ["activeTab", "contextMenus", "scripting", "storage"],
   "optional_permissions": ["notifications"],
   "default_locale": "en",
   "icons": {
@@ -14,7 +16,7 @@
     "128": "assets/icon-128.png",
     "256": "assets/icon-256.png"
   },
-  "browser_action": {
+  "action": {
     "default_icon": "assets/icon-48.png",
     "default_title": "Echo for Kodi",
     "default_popup": "pages/popup/index.html"
@@ -23,7 +25,15 @@
     "page": "pages/options/index.html"
   },
   "background": {
-    "page": "pages/background/index.html",
-    "persistent": false
+    "page": "pages/background/index.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@kodi-echo",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
   }
 }

@@ -2,7 +2,7 @@
  * Get the browser.
  *
  * This is needed because Firefox and Edge use the `browser` object and
- * Chrome uses uses the non-standard `chrome` object.
+ * Chrome uses the non-standard `chrome` object.
  *
  * @returns {object}
  */

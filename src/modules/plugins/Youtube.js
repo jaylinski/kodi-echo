@@ -13,9 +13,11 @@ class Youtube extends WebPlugin {
   }
 
   async stopCurrentlyPlayingMedia() {
-    await executeScriptInActiveTab(
-      `try { document.querySelector('#player-container .playing-mode video').click() } catch (e) {}`
-    );
+    await executeScriptInActiveTab(() => {
+      try {
+        document.querySelector('#player-container .playing-mode video').click();
+      } catch (e) {}
+    });
   }
 
   template(videoId) {
